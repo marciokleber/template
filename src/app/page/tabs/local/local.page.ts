@@ -1,12 +1,8 @@
 import {Component} from '@angular/core';
-import {LocalsService} from "../service/locals.service";
-import {HttpParams} from "@angular/common/http";
-import {Local} from "./local";
-import {take} from "rxjs/operators";
-import {InfiniteScrollCustomEvent} from "@ionic/angular";
-import {LoadOptions} from "../@core/data-table/load-options";
-import {httpParamsAdapter} from "../@core/data-table/http-params-adapter";
-import {StandardDataSource} from "../@core/standard-data-source";
+import {StandardDataSource} from "../../../@core/standard-data-source";
+import {LocalsService} from "../../../service/locals.service";
+import {httpParamsAdapter} from "../../../@core/data-table/http-params-adapter";
+
 
 // interface Locals {
 //   id: number;
