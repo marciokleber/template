@@ -7,16 +7,18 @@ import {ExploreContainerComponentModule} from '../explore-container/explore-cont
 
 import {LocalPageRoutingModule} from './local-routing.module';
 import {StandardListComponent} from "../@core/components/standard-list/standard-list.component";
+import {StandardSearchbarComponent} from "../@core/components/standard-searchbar/standard-searchbar.component";
 
 @NgModule({
-    imports: [
-        IonicModule,
-        CommonModule,
-        FormsModule,
-        ExploreContainerComponentModule,
-        LocalPageRoutingModule,
-        StandardListComponent
-    ],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    ExploreContainerComponentModule,
+    LocalPageRoutingModule,
+    StandardListComponent,
+    StandardSearchbarComponent
+  ],
   declarations: [LocalPage]
 })
 export class LocalPageModule {

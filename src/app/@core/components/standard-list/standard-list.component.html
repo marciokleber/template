@@ -1,9 +1,9 @@
-<ion-searchbar [placeholder]="searchPlaceholder"
-               (ionCancel)="onCancelSearch()"
-               (ionInput)="onInputSearch($event)"></ion-searchbar>
+<!--<ion-searchbar [placeholder]="searchPlaceholder"-->
+<!--               (ionCancel)="onCancelSearch()"-->
+<!--               (ionInput)="onInputSearch($event)"></ion-searchbar>-->
 <ion-list [inset]="true">
   <!--  @for (local of locals; track local.id) {-->
-      <ion-item *ngFor="let resource of resources">
+      <ion-item *ngFor="let resource of dataSource.items">
         <!--      <ion-avatar slot="start">-->
         <!--&lt;!&ndash;        <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>&ndash;&gt;&ndash;&gt;-->
         <!--      </ion-avatar>-->

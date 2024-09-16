@@ -24,68 +24,53 @@ export class StandardListComponent implements OnInit {
 
   @Input() dataField: string = '';
 
-  @Input() searchPlaceholder: string = 'Pesquisar...';
 
-  loadOptions: LoadOptions = new LoadOptions();
 
-  resources: any[] = [];
+  // loadOptions: LoadOptions = new LoadOptions();
 
-  totalPages = -1;
+  // resources: any[] = [];
 
-  currentPage = 1;
+  // totalPages = -1;
+
+  // currentPage = 1;
 
   constructor() {
 
   }
 
   ngOnInit(): void {
-    this.dataSource.options.load(this.loadOptions)
-      .pipe(
-        take(1),
-      ).subscribe(page => {
-      this.resources = page.content;
-      this.totalPages = page.totalPages;
-    });
+    this.dataSource.load();
   }
 
 
   onIonInfinite(e: any) {
-    if (this.totalPages === this.currentPage) {
+    if (this.dataSource.totalPages === this.dataSource.currentPage) {
       e.target.complete();
       return;
     }
-    this.loadOptions.currentPage = ++this.currentPage;
-    this.dataSource.options.load(this.loadOptions).pipe(take(1))
-      .subscribe(page => {
-          this.resources.push(...page.content);
-          this.totalPages = page.totalPages;
-          e.target.complete();
-        }
-      )
+    // this.loadOptions.currentPage = ++this.currentPage;
+    this.dataSource.setPage(++this.dataSource.currentPage);
+    this.dataSource.load();
   }
 
   onInputSearch(e: any) {
-    this.loadOptions.searchFields = [this.dataField];
-    this.loadOptions.searchValue = e.detail.value;
-    this.loadOptions.currentPage = this.currentPage = 1;
-    this.dataSource.options.load(this.loadOptions).pipe(take(1))
-      .subscribe(page => {
-          this.resources = page.content;
-          this.totalPages = page.totalPages;
-        }
-      )
+    // this.loadOptions.searchFields = [this.dataField];
+    // this.loadOptions.searchValue = e.detail.value;
+    // this.loadOptions.currentPage = this.currentPage = 1;
+    this.dataSource.setPage(1);
+    this.dataSource.load();
   }
 
-  onCancelSearch() {
-    this.loadOptions.currentPage = this.currentPage = 1;
-    this.loadOptions.searchValue = undefined;
-    this.dataSource.options.load(this.loadOptions).pipe(take(1))
-      .subscribe(page => {
-          this.resources.push(...page.content);
-          this.totalPages = page.totalPages;
-        }
-      )
-  }
+  // onCancelSearch() {
+  //   // this.loadOptions.currentPage = this.currentPage = 1;
+  //   // this.loadOptions.searchValue = undefined;
+  //   this.dataSource.load().pipe(take(1))
+  //     .subscribe(page => {
+  //         this.resources.push(...page.content);
+  //         // this.totalPages = page.totalPages;
+  //       }
+  //     )
+  // }
 
 
 }
