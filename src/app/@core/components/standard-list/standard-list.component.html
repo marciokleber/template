@@ -1,0 +1,18 @@
+<ion-searchbar [placeholder]="searchPlaceholder"
+               (ionCancel)="onCancelSearch()"
+               (ionInput)="onInputSearch($event)"></ion-searchbar>
+<ion-list [inset]="true">
+  <!--  @for (local of locals; track local.id) {-->
+      <ion-item *ngFor="let resource of resources">
+        <!--      <ion-avatar slot="start">-->
+        <!--&lt;!&ndash;        <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>&ndash;&gt;&ndash;&gt;-->
+        <!--      </ion-avatar>-->
+        <ion-label>{{ resource[displayValue] }}</ion-label>
+        <ion-icon slot="end" name="ellipsis-vertical" color="medium"></ion-icon>
+      </ion-item>
+  <!--  }-->
+
+</ion-list>
+<ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content loadingText="Carregando..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+</ion-infinite-scroll>
