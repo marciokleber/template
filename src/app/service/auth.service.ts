@@ -48,28 +48,6 @@ export class AuthService {
       return false;
     }
 
-
-
-
-    // // Fazendo a requisição para obter o token
-    // await this.http.post(this.keycloakUrl, body.toString(), { headers })
-    //   .subscribe(
-    //     async (res: any) => {
-    //       const accessToken = res.access_token;
-    //       // Armazenando o token no storage do Capacitor
-    //       await this.storageService.save('access_token', accessToken);
-    //       await load.dismiss();
-    //       console.log('Token armazenado com sucesso:', accessToken);
-    //       this.isGetAccessToken = true;
-    //
-    //     },
-    //     async (err) => {
-    //       console.log(err);
-    //       await load.dismiss();
-    //       this.isGetAccessToken = false;
-    //     }
-    //   );
-    // return this.isGetAccessToken;
   }
 
 
