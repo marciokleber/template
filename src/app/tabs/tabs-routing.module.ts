@@ -9,15 +9,15 @@ const routes: Routes = [
     children: [
       {
         path: 'local',
-        loadChildren: () => import('../local/local.module').then(m => m.LocalPageModule)
+        loadChildren: () => import('../page/tabs/local/local.module').then(m => m.LocalPageModule)
       },
       {
         path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../page/tabs/tab2/tab2.module').then(m => m.Tab2PageModule)
       },
       {
         path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('../page/tabs/tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
         path: '',

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LocalsService} from "../service/locals.service";
+import {LocalsService} from "../../../service/locals.service";
 
 interface Locals {
   id: number;
