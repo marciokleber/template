@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-register-screen">
+    <ion-label class="main-title">Bem-vindo ao <br> RFID </ion-label>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="main-content">
+        <ion-label class="lbl">Username</ion-label>
+        <ion-item lines="none" class="item-content">
+          <ion-input formControlName="username" type="email" placeholder="username"></ion-input>
+        </ion-item>
+
+
+        <ion-label class="lbl">Senha</ion-label>
+        <ion-item lines="none" class="item-content">
+          <ion-input formControlName="password" [type]="passwordView == false ? 'password' :'text' " placeholder="Entre com sua senha"></ion-input>
+          <ion-icon slot="end" [name]="passwordView == false ?'eye-outline' :'eye-off-outline'" (click)="toggePassword()"
+                    color="medium"></ion-icon>
+        </ion-item>
+
+        <ion-label class="reset-password" >Forgot your password?</ion-label>
+
+        <ion-button expand="block" fill="solid" color="primary" type="submit">
+          Sign In
+        </ion-button>
+      </div>
+    </form>
+
+
+  </div>
+</ion-content>

@@ -1,4 +1,11 @@
 /*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : ELearning - 2 This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+*/
+/*
  * App Global CSS
  * ----------------------------------------------------------------------------
  * Put style rules here that you want to apply globally. These styles are for
@@ -16,7 +23,7 @@
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+@import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
@@ -25,13 +32,1555 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+@font-face {
+  font-family: "regular";
+  src: url(assets/fonts/Poppins-Regular.ttf);
+}
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+@font-face {
+  font-family: "medium";
+  src: url(assets/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+  font-family: "bold";
+  src: url(assets/fonts/Poppins-Bold.ttf);
+}
+
+@font-face {
+  font-family: "semi-bold";
+  src: url(assets/fonts/Poppins-SemiBold.ttf);
+}
+
+* {
+  font-family: "regular";
+}
+
+ion-label {
+  display: block !important;
+}
+
+.course-more-lbl {
+  font-size: 14px;
+  font-family: 'semi-bold';
+  color: var(--ion-color-medium);
+  text-align: center;
+  margin: 10px 0px;
+
+  .active {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-danger);
+  }
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+ion-content {
+  --background: #F5F9FF;
+}
+
+ion-toolbar {
+  --background: #F5F9FF;
+
+  ion-avatar {
+    height: 40px;
+    width: 40px;
+  }
+
+  ion-searchbar {
+    margin-top: 10px;
+    font-family: 'semi-bold';
+  }
+
+  .search-content-toolbar {
+    border: 1px solid lightgray;
+    margin: 0px 10px;
+    border-radius: 5px;
+
+    .lbl {
+      font-size: 14px;
+      font-family: 'regular';
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+ion-title {
+  font-family: 'bold';
+  text-transform: capitalize;
+  font-size: 14px;
+
+  .title-bold-toolbar {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-light);
+  }
+
+  .title-regular-toolbar {
+    font-size: 12px;
+    font-family: 'regular';
+    color: var(--ion-color-light);
+  }
+}
+
+ion-segment {
+  ion-label {
+    text-transform: capitalize;
+    font-family: 'bold';
+  }
+}
+
+ion-button {
+  font-family: 'bold';
+  text-transform: capitalize;
+}
+
+ion-modal.language-modal {
+  .modal-wrapper {
+    width: 100% !important;
+  }
+
+  &.bottom {
+    align-items: flex-end !important;
+  }
+
+  --height: 60vh;
+  align-items: flex-end;
+  --border-radius:20px 20px 0px 0px;
+  --backdrop-opacity:0.8;
+}
+
+ion-modal.success-modal {
+  .modal-wrapper {
+    width: 100% !important;
+  }
+
+  &.bottom {
+    align-items: center !important;
+  }
+
+  --height: 400px;
+  align-items: center;
+  padding: 15px;
+  --border-radius:20px;
+}
+
+.enroll-btn {
+  background-color: var(--ion-color-primary);
+  padding: 5px;
+  border-radius: 10px;
+
+  .title {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-light);
+    text-align: center;
+  }
+
+  .sub-title {
+    font-size: 12px;
+    font-family: 'regular';
+    color: var(--ion-color-light);
+    text-align: center;
+  }
+}
+
+.welcome-screen {
+
+  .info-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+
+    .img {
+      height: 350px;
+      width: 350px;
+    }
+
+    .box-content {
+      margin: 20px 0px;
+
+      .title {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: center;
+      }
+
+      .sub-title {
+        font-size: 12px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-medium);
+        text-align: center;
+        margin: 5px 0px;
+      }
+
+      .dots {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px;
+
+        .active {
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          background-color: var(--ion-color-primary);
+          margin: 0px 5px;
+        }
+
+        .deactive {
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          background-color: var(--ion-color-medium);
+          margin: 0px 5px;
+        }
+      }
+
+      ion-button {
+        margin: 30px 0px;
+      }
+    }
+  }
+
+}
+
+.login-register-screen {
+  .main-title {
+    font-size: 1.4rem;
+    font-family: 'semi-bold';
+    color: var(--ion-color-dark);
+    text-align: start;
+  }
+
+  .main-content {
+    margin: 30px 0px;
+
+    .lbl {
+      font-size: 12px;
+      font-family: 'regular';
+      color: var(--ion-color-dark);
+      text-align: start;
+      margin: 10px 0px;
+    }
+
+    .item-content {
+      --background: #f3f3f3;
+      --border-radius: 10px;
+
+      ion-input {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+      }
+    }
+
+    .reset-password {
+      text-align: end;
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-primary);
+      margin: 20px 0px;
+    }
+
+    ion-button {
+      margin: 20px 0px;
+    }
+
+    .checkbox-item {
+      --background: transparent;
+      --padding-start: 0px;
+      margin: 10px 0px;
+
+      .lbl {
+        font-size: 12px;
+        font-family: 'regular';
+        color: var(--ion-color-medium);
+        text-align: start;
+        white-space: normal;
+
+        .active {
+          font-size: 12px;
+          font-family: 'bold';
+          color: var(--ion-color-primary);
+        }
+      }
+    }
+  }
+
+  .or-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .lines {
+      height: 1px;
+      width: 100%;
+      background-color: var(--ion-color-medium);
+    }
+
+    .lbl {
+      font-size: 12px;
+      font-family: 'semi-bold';
+      color: var(--ion-color-medium);
+      text-align: center;
+    }
+  }
+
+  .face-lock {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+
+    .img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .bottom-btn {
+    margin: 30px 0px;
+    font-size: 12px;
+    font-family: 'semi-bold';
+    color: var(--ion-color-medium);
+    text-align: center;
+
+    .active {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-primary);
+      text-align: center;
+    }
+  }
+}
+
+.verify-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .main-title {
+    font-size: 1.4rem;
+    font-family: 'semi-bold';
+    color: var(--ion-color-dark);
+    text-align: center;
+  }
+
+  .sub-title {
+    font-size: 14px;
+    font-family: 'regular';
+    color: var(--ion-color-medium);
+    text-align: center;
+    margin: 10px 0px;
+  }
+
+  .otp-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+  }
+
+  .lbl {
+    font-size: 12px;
+    font-family: 'semi-bold';
+    color: var(--ion-color-dark);
+    text-align: center;
+  }
+
+  .resend {
+    font-size: 12px;
+    font-family: 'bold';
+    color: var(--ion-color-primary);
+    text-align: center;
+    margin: 10px 0px;
+  }
+}
+
+.basic-info-screen {
+  .main-title {
+    font-size: 1.4rem;
+    font-family: 'semi-bold';
+    color: var(--ion-color-dark);
+    text-align: start;
+  }
+
+  .main-content {
+    margin: 30px 0px;
+
+    .lbl {
+      font-size: 12px;
+      font-family: 'regular';
+      color: var(--ion-color-dark);
+      text-align: start;
+      margin: 10px 0px;
+    }
+
+    .item-content {
+      --background: #f3f3f3;
+      --border-radius: 10px;
+
+      ion-input {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+      }
+
+      ion-select {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.language-screen {
+  .item-content {
+    --background: transparent;
+    border-bottom: 1px solid #f3f3f3;
+
+    .lbl {
+      .title {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      .sub-title {
+        font-size: 12px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-medium);
+        text-align: start;
+      }
+    }
+  }
+}
+
+.success-modal-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .img {
+    height: 180px;
+    width: 180px;
+  }
+
+  .title {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-dark);
+    text-align: center;
+    margin: 10px 0px;
+  }
+
+  .sub-title {
+    font-size: 12px;
+    font-family: 'semi-bold';
+    color: var(--ion-color-medium);
+    text-align: center;
+  }
+
+  ion-button {
+    margin: 20px 0px;
+    width: 100%;
+  }
+}
+
+.reset-password-screen {
+  .box-content {
+    .title {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+      margin: 30px 0px;
+    }
+
+    .otp-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 30px 0px;
+    }
+
+    .resend {
+      font-size: 12px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: center;
+
+      .active {
+        color: var(--ion-color-danger);
+        text-decoration: underline;
+        font-family: 'bold';
+      }
+    }
+
+    .lbl {
+      font-size: 14px;
+      font-family: 'semi-bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+      margin: 10px 0px;
+    }
+
+    .item-content {
+      --background: #f3f3f3;
+      --min-height: 50px;
+      border-radius: 5px;
+
+      ion-input {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      .phone-lbl {
+        font-size: 14px;
+        font-family: 'regular';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      ion-icon {
+        font-size: 18px;
+      }
+    }
+
+    .login-btn {
+      margin: 20px 0px;
+    }
+  }
+}
+
+.pick-course-screen {
+  .main-title {
+    font-size: 1.4rem;
+    font-family: 'semi-bold';
+    color: var(--ion-color-dark);
+    text-align: start;
+  }
+
+  ion-searchbar {
+    margin: 10px 0px;
+    -webkit-padding-start: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    padding-right: 0px;
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-dark);
+  }
+
+  .course-list {
+    .card-content {
+      margin-inline: 0px;
+      margin: 5px 0px;
+
+      .cover-image {
+        width: 100%;
+        height: 80px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+
+        .overlay {
+          height: 80px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: rgba(0, 0, 0, 0.8);
+          position: relative;
+
+          .icon-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+          }
+
+          .lbl {
+            font-size: 14px;
+            font-family: 'bold';
+            color: var(--ion-color-light);
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.home-screen {
+  .main-title {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .lbl {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+    }
+
+    .btn {
+      display: flex !important;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-warning);
+      text-align: end;
+    }
+  }
+
+  .subject-list {
+    .card-content {
+      margin-inline: 0px;
+      margin: 5px 0px;
+      padding: 5px;
+
+      .cover-image {
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .title {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      .sub-title {
+        font-size: 12px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-medium);
+        text-align: start;
+      }
+    }
+  }
+
+  .course-card-content {
+    width: 100%;
+    padding: 10px;
+    margin-inline: 0px;
+    margin: 10px 0px;
+
+    .cover-image {
+      width: 100%;
+      height: 120px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+
+      .lbl-content {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: var(--ion-color-dark);
+        border-radius: 5px;
+
+        .lbl {
+          font-size: 10px;
+          font-family: 'bold';
+          color: var(--ion-color-light);
+          text-align: center;
+          padding: 5px;
+        }
+      }
+    }
+
+    .name {
+      margin: 5px 0px;
+      font-size: 14px;
+      font-family: 'semi-bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+    }
+
+    .subject {
+      font-size: 12px;
+      font-family: 'regular';
+      color: var(--ion-color-medium);
+      text-align: start;
+    }
+
+    .bottom-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 5px 0px;
+
+      .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        ion-icon {
+          font-size: 12px;
+        }
+
+        .lbl {
+          font-size: 10px;
+          font-family: 'regular';
+          color: var(--ion-color-medium);
+          text-align: start;
+          margin: 0px 5px;
+        }
+      }
+    }
+  }
+}
+
+.notification-screen {
+  .main-title {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-dark);
+    text-align: start;
+    margin: 10px 0px;
+  }
+
+  .card-content {
+    margin-inline: 0px;
+    margin: 10px 0px;
+
+    .item-content {
+      .lbl {
+        .title {
+          font-size: 14px;
+          font-family: 'semi-bold';
+          color: var(--ion-color-dark);
+          text-align: start;
+        }
+
+        .sub-title {
+          display: flex !important;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 12px;
+          font-family: 'regular';
+          color: var(--ion-color-medium);
+        }
+      }
+    }
+  }
+}
+
+.profile-screen {
+  .top-card-content {
+    margin-inline: 0px;
+    margin: 10px 0px;
+    padding: 10px;
+
+    .cover-image {
+      height: 140px;
+      width: 100%;
+      border-radius: 5px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .title {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+    }
+
+    .sub-title {
+      font-size: 12px;
+      font-family: 'regular';
+      color: var(--ion-color-medium);
+      text-align: start;
+    }
+
+    .followers {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px 0px;
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .lbl {
+          font-size: 12px;
+          font-family: 'bold';
+          color: var(--ion-color-dark);
+          text-align: start;
+        }
+
+        .count {
+          font-size: 12px;
+          font-family: 'semi-bold';
+          color: var(--ion-color-dark);
+          text-align: start;
+        }
+      }
+    }
+  }
+
+  .main-title {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .lbl {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+    }
+
+    .btn {
+      display: flex !important;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-warning);
+      text-align: end;
+    }
+  }
+
+  .card-content {
+    margin-inline: 0px;
+    margin: 10px 0px;
+    padding: 10px;
+
+    .title {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+    }
+
+    .sub-title {
+      font-size: 12px;
+      font-family: 'regular';
+      color: var(--ion-color-medium);
+      text-align: start;
+    }
+
+    .circle-progress {
+      height: 40px;
+    }
+  }
+}
+
+.settings-section {
+  .main-title {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-dark);
+    text-align: start;
+    margin: 10px 0px;
+  }
+
+  .card-content {
+    margin-inline: 0px;
+    margin: 10px 0px;
+
+    .item-content {
+      .lbl {
+        .title {
+          font-size: 14px;
+          font-family: 'semi-bold';
+          color: var(--ion-color-dark);
+          text-align: start;
+        }
+
+        .title-red {
+          font-size: 14px;
+          font-family: 'semi-bold';
+          color: var(--ion-color-danger);
+          text-align: start;
+        }
+
+        .sub-title {
+          font-size: 12px;
+          font-family: 'regular';
+          color: var(--ion-color-medium);
+          text-align: start;
+        }
+      }
+    }
+  }
+}
+
+.change-password-screen {
+  .lbl {
+    font-size: 12px;
+    font-family: 'regular';
+    color: var(--ion-color-dark);
+    text-align: start;
+    margin: 10px 0px;
+  }
+
+  .item-content {
+    --background: #f3f3f3;
+    --border-radius: 10px;
+
+    ion-input {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+.faqs-screen {
+  .card-content {
+    margin-inline: 0px;
+    border: 1px solid #D1EFFF;
+    border-radius: 10px;
+    padding: 10px;
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .lbl {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+    }
+
+    .decs {
+      font-size: 12px;
+      font-family: 'semi-bold';
+      color: var(--ion-color-medium);
+      text-align: start;
+      margin: 5px 0px;
+    }
+  }
+}
+
+.country-screen {
+  .item-content {
+    --padding-start: 0px;
+    --background: transparent;
+
+    .lbl {
+      font-size: 12px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+
+      .title {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      .sub-title {
+        font-size: 12px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-medium);
+        text-align: start;
+      }
+    }
+  }
+}
+
+.edit-profile-screen {
+
+  .lbl {
+    font-size: 12px;
+    font-family: 'regular';
+    color: var(--ion-color-dark);
+    text-align: start;
+    margin: 10px 0px;
+  }
+
+  .item-content {
+    --background: #f3f3f3;
+    --border-radius: 10px;
+
+    ion-input {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+    }
+
+    ion-select {
+      width: 100%;
+    }
+
+    ion-textarea {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+.report-issue-screen {
+  .lbl {
+    font-size: 12px;
+    font-family: 'regular';
+    color: var(--ion-color-dark);
+    text-align: start;
+    margin: 10px 0px;
+  }
+
+  .item-content {
+    --background: #f3f3f3;
+    --border-radius: 10px;
+
+    ion-input {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+    }
+  }
+
+  ion-chip {
+    margin: 10px 0px;
+  }
+}
+
+.live-stream-screen {
+  .card-content {
+    margin-inline: 0px;
+    margin: 10px 0px;
+
+    .course-cover-image {
+      width: 100%;
+      height: 180px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+
+      .top-content {
+        padding: 10px 10px;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .live {
+          background-color: var(--ion-color-danger);
+          border-radius: 5px;
+
+          .lbl {
+            font-size: 10px;
+            font-family: 'bold';
+            color: var(--ion-color-light);
+            text-align: center;
+            padding: 5px;
+          }
+        }
+
+        .count {
+          background-color: var(--ion-color-light);
+          border-radius: 5px;
+          margin: 0px 10px;
+
+          .lbl {
+            font-size: 10px;
+            font-family: 'bold';
+            color: var(--ion-color-dark);
+            text-align: center;
+            padding: 5px;
+          }
+        }
+      }
+
+      .bottom-content {
+        background-image: linear-gradient(180deg, #00000091, #000000e6);
+        padding: 20px 10px;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+
+        .name {
+          font-size: 14px;
+          font-family: 'bold';
+          color: var(--ion-color-light);
+          text-align: start;
+        }
+
+        .type {
+          font-size: 12px;
+          font-family: 'semi-bold';
+          color: var(--ion-color-light);
+          text-align: start;
+        }
+      }
+    }
+  }
+}
+
+.live-course-screen {
+
+  .live-screen {
+    width: 100%;
+    height: 200px;
+    position: relative;
+
+    .top-content {
+      padding: 10px 10px;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      .live {
+        background-color: var(--ion-color-danger);
+        border-radius: 5px;
+
+        .lbl {
+          font-size: 10px;
+          font-family: 'bold';
+          color: var(--ion-color-light);
+          text-align: center;
+          padding: 5px;
+        }
+      }
+
+      .count {
+        background-color: var(--ion-color-light);
+        border-radius: 5px;
+        margin: 0px 10px;
+
+        .lbl {
+          font-size: 10px;
+          font-family: 'bold';
+          color: var(--ion-color-dark);
+          text-align: center;
+          padding: 5px;
+        }
+      }
+    }
+
+    .bottom-content {
+      background-image: linear-gradient(180deg, #00000091, #000000e6);
+      padding: 20px 10px;
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+
+      .name {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-light);
+        text-align: start;
+      }
+
+      .type {
+        font-size: 12px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-light);
+        text-align: start;
+      }
+    }
+
+    .video-js {
+      height: 200px;
+      width: 100%;
+    }
+  }
+
+  .main-content {
+    margin: 10px 0px;
+    padding: 10px 16px;
+
+    .main-title {
+      font-size: 16px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+      margin: 10px 0px;
+    }
+
+    .row-content {
+      .cover-image {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .title {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      .time {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 12px;
+        font-family: 'regular';
+        color: var(--ion-color-medium);
+        text-align: start;
+      }
+
+      .msg {
+        font-size: 13px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-dark);
+        text-align: start;
+      }
+
+      .break {
+        height: 1px;
+        margin: 5px 0px;
+        width: 100%;
+        background-color: var(--ion-color-medium);
+      }
+
+      .btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .lbl {
+          display: flex !important;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 13px;
+          font-family: 'regular';
+          color: var(--ion-color-dark);
+          text-align: start;
+        }
+      }
+    }
+  }
+}
+
+.bottom-content-chat {
+  .text-input {
+    --background: #f3f3f3;
+    --padding-start: 10px;
+    --border-radius: 50px;
+
+    ion-textarea {
+      font-size: 14px;
+      font-family: 'semi-bold';
+    }
+  }
+
+  .voice-btn {
+    background-color: var(--ion-color-primary);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+}
+
+.course-detail-screen {
+  .cover-image {
+    height: 280px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .back-btn {
+      height: 40px;
+      width: 40px;
+      background-color: var(--ion-color-light);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 40px;
+      left: 16px;
+      box-shadow: 0px 0px 10px 2px lightgray;
+    }
+  }
+
+  .main-content {
+    margin: 10px 0px;
+    padding: 10px 16px;
+
+    .header-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0px;
+
+      .lbl-content {
+        background-color: var(--ion-color-dark);
+        padding: 3px 10px;
+        border-radius: 5px;
+
+        .lbl {
+          font-size: 12px;
+          font-family: 'bold';
+          color: var(--ion-color-light);
+          text-align: center;
+        }
+      }
+
+      .end-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .heart-icon {
+          font-size: 1.5rem;
+          margin: 0px 10px;
+        }
+
+        ion-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .name {
+      font-size: 16px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+      margin: 5px 0px;
+    }
+
+    .type {
+      font-size: 12px;
+      font-family: 'semi-bold';
+      color: var(--ion-color-medium);
+      text-align: start;
+    }
+
+    .star-lbl {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0px;
+
+      .stars {
+        ion-icon {
+          font-size: 16px;
+          margin-right: 5px;
+        }
+      }
+
+      .lbl {
+        font-size: 14px;
+        font-family: 'bold';
+        color: var(--ion-color-dark);
+        text-align: end;
+      }
+    }
+
+    .main-title {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-primary);
+      text-align: start;
+      margin: 10px 0px;
+    }
+
+    .desc {
+      font-size: 12px;
+      font-family: 'regular';
+      color: var(--ion-color-medium);
+      text-align: start;
+    }
+
+    .date-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      ion-icon {
+        font-size: 14px;
+      }
+
+      .lbl {
+        font-size: 12px;
+        font-family: 'semi-bold';
+        color: var(--ion-color-medium);
+        text-align: start;
+        margin: 0px 10px;
+      }
+    }
+
+    .skill-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .content {
+        background-color: var(--ion-color-dark);
+        padding: 3px;
+        border-radius: 10px;
+
+        .lbl {
+          font-size: 12px;
+          font-family: 'bold';
+          color: var(--ion-color-light);
+          text-align: center;
+        }
+      }
+    }
+
+    .author-content {
+      --background: transparent;
+      --padding-start: 0px;
+
+      .lbl {
+        .title {
+          font-size: 14px;
+          font-family: 'bold';
+          color: var(--ion-color-dark);
+          text-align: start;
+        }
+
+        .sub-title {
+          font-size: 12px;
+          font-family: 'semi-bold';
+          color: var(--ion-color-medium);
+          text-align: start;
+        }
+      }
+    }
+
+    .curriculcum-list {
+      margin: 20px 0px;
+
+      .curriculcum-content-data {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0px;
+        margin: 10px 0px;
+        border-bottom: 1px solid #E8F1FF;
+
+        .prefix {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+
+          .number {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 1px solid #E8F1FF;
+            background: #F5F9FF;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            .time {
+              font-size: 12px;
+              font-family: 'bold';
+              color: var(--ion-color-dark);
+            }
+          }
+
+          .name-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin: 0px 10px;
+
+            .title {
+              font-size: 14px;
+              font-family: 'bold';
+              color: var(--ion-color-dark);
+              text-align: start;
+            }
+
+            .total-time {
+              font-size: 12px;
+              font-family: 'bold';
+              color: var(--ion-color-primary);
+              text-align: start;
+            }
+          }
+        }
+
+        .play-btn-curriculcum {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
