@@ -22,9 +22,11 @@ export class StandardListComponent implements OnInit {
 
   @Input({required: true}) dataSource!: StandardDataSource;
 
-  @Input() displayValue: string = '';
+  @Input() dataField: string = '';
 
   @Input() searchPlaceholder: string = 'Pesquisar...';
+
+  loadOptions: LoadOptions = new LoadOptions();
 
   resources: any[] = [];
 
@@ -37,29 +39,23 @@ export class StandardListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const loadOptions = new LoadOptions()
-    this.dataSource.options.load(loadOptions)
+    this.dataSource.options.load(this.loadOptions)
       .pipe(
         take(1),
       ).subscribe(page => {
       this.resources = page.content;
       this.totalPages = page.totalPages;
-      // this.currentPage = page.
     });
   }
 
-  onCancelSearch() {
-
-  }
 
   onIonInfinite(e: any) {
     if (this.totalPages === this.currentPage) {
       e.target.complete();
       return;
     }
-    const loadOptions = new LoadOptions()
-    loadOptions.currentPage = ++this.currentPage;
-    this.dataSource.options.load(loadOptions).pipe(take(1))
+    this.loadOptions.currentPage = ++this.currentPage;
+    this.dataSource.options.load(this.loadOptions).pipe(take(1))
       .subscribe(page => {
           this.resources.push(...page.content);
           this.totalPages = page.totalPages;
@@ -68,8 +64,27 @@ export class StandardListComponent implements OnInit {
       )
   }
 
-  onInputSearch($event: any) {
+  onInputSearch(e: any) {
+    this.loadOptions.searchFields = [this.dataField];
+    this.loadOptions.searchValue = e.detail.value;
+    this.loadOptions.currentPage = this.currentPage = 1;
+    this.dataSource.options.load(this.loadOptions).pipe(take(1))
+      .subscribe(page => {
+          this.resources = page.content;
+          this.totalPages = page.totalPages;
+        }
+      )
+  }
 
+  onCancelSearch() {
+    this.loadOptions.currentPage = this.currentPage = 1;
+    this.loadOptions.searchValue = undefined;
+    this.dataSource.options.load(this.loadOptions).pipe(take(1))
+      .subscribe(page => {
+          this.resources.push(...page.content);
+          this.totalPages = page.totalPages;
+        }
+      )
   }
 
 
