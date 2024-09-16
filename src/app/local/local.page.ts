@@ -43,11 +43,12 @@ export class LocalPage {
   onIonInfinite(e: InfiniteScrollCustomEvent) {
     const httpParams = new HttpParams()
       .set('page', ++this.page);
-    this.localsService.findAll(httpParams).pipe(
-      take(1)
-    ).subscribe(page => {
-      this.locals = page.content;
-    })
+    this.localsService.findAll(httpParams).pipe(take(1))
+      .subscribe(page => {
+          this.locals.push(...page.content);
+          e.target.complete();
+        }
+      )
     // setTimeout(() => {
     //   e.target.complete();
     // }, 500);
