@@ -14,7 +14,7 @@ export class LoadOptions {
 
   searchOperation?: string = "contains"
 
-  searchValue?: string;
+  searchValue?: string ;
 
   sort?: { field: string, desc: boolean }[]
 
