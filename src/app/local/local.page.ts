@@ -21,6 +21,7 @@ export class LocalPage {
   page = 0;
   size = 10;
   summaryOptions = '';
+  totalPages = -1;
 
   locals: Local[] = [];
 
@@ -41,11 +42,16 @@ export class LocalPage {
 
 
   onIonInfinite(e: InfiniteScrollCustomEvent) {
+    if(this.totalPages === this.page) {
+      e.target.complete();
+      return;
+    }
     const httpParams = new HttpParams()
       .set('page', ++this.page);
     this.localsService.findAll(httpParams).pipe(take(1))
       .subscribe(page => {
           this.locals.push(...page.content);
+          this.totalPages = page.totalPages;
           e.target.complete();
         }
       )
