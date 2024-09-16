@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {StandardNgService} from "../@core/standard-ng-service";
 import {environment} from "../../environments/environment";
-import {Local} from "../local/local";
+import {Local} from "../page/tabs/local/local";
 
 
 @Injectable({

@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {LocalsService} from "../service/locals.service";
 import {HttpParams} from "@angular/common/http";
 import {Local} from "./local";
 import {take} from "rxjs/operators";
 import {InfiniteScrollCustomEvent} from "@ionic/angular";
+import {LocalsService} from "../../../service/locals.service";
 
 // interface Locals {
 //   id: number;

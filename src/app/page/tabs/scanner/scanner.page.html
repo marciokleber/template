@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <!--      <ion-button color="dark">-->
+      <!--        <ion-icon slot="icon-only" src="assets/icon/menu.svg"></ion-icon>-->
+      <!--      </ion-button>-->
+    </ion-buttons>
+    <ion-title>Scanner</ion-title>
+    <ion-buttons slot="end">
+      <!--      <ion-button color="dark">-->
+      <!--        <ion-icon slot="icon-only" src="assets/icon/settings.svg"></ion-icon>-->
+      <!--      </ion-button>-->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+
+    <ion-card mode="ios" class="card-content">
+      <ion-item-sliding>
+        <ion-item-options side="start">
+          <ion-item-option color="success">
+            <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">
+            <p class="title">teste</p>
+            <p class="sub-title"><ion-icon slot="icon-only" src="assets/icon/home.svg"></ion-icon> local</p>
+          </ion-label>
+          <ion-icon slot="end" name="ellipsis-vertical" color="medium" ></ion-icon>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-card>
+  </ion-list>
+</ion-content>

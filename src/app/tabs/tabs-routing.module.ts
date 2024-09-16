@@ -8,6 +8,10 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'scanner',
+        loadChildren: () => import('../page/tabs/scanner/scanner.module').then(m => m.ScannerPageModule)
+      },
+      {
         path: 'local',
         loadChildren: () => import('../page/tabs/local/local.module').then(m => m.LocalPageModule)
       },
