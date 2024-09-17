@@ -2,14 +2,45 @@
 <!--               (ionCancel)="onCancelSearch()"-->
 <!--               (ionInput)="onInputSearch($event)"></ion-searchbar>-->
 <ion-list [inset]="true">
+<!--  <ion-card mode="ios" class="card-content" *ngFor="let resource of dataSource.items">-->
+<!--    <ion-item-sliding>-->
+<!--      <ion-item-options side="start">-->
+<!--        <ion-item-option color="success">-->
+<!--          <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>-->
+<!--        </ion-item-option>-->
+<!--      </ion-item-options>-->
+<!--      <ion-item lines="none" class="item-content">-->
+<!--        <ion-label class="lbl">-->
+<!--          <p class="title">{{ resource[dataField] }}</p>-->
+<!--          <p class="sub-title"><ion-icon slot="icon-only" src="assets/icon/home.svg"></ion-icon> local</p>-->
+<!--        </ion-label>-->
+<!--        <ion-icon slot="end" name="ellipsis-vertical" color="medium" ></ion-icon>-->
+<!--      </ion-item>-->
+<!--    </ion-item-sliding>-->
+<!--  </ion-card>-->
+
+
+  <div class="curriculcum-list">
+    <div class="curriculcum-content-data" *ngFor="let resource of dataSource.items">
+      <div class="prefix">
+        <ion-label class="lbl">
+          <ion-icon slot="icon-only" src="assets/icon/home.svg"></ion-icon>
+        </ion-label>
+        <div class="name-content">
+          <ion-label>{{ resource[dataField] }}</ion-label>
+          <ion-label class="total-time"> {{ resource.idLocal }} </ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
   <!--  @for (local of locals; track local.id) {-->
-      <ion-item *ngFor="let resource of dataSource.items">
-        <!--      <ion-avatar slot="start">-->
-        <!--&lt;!&ndash;        <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>&ndash;&gt;&ndash;&gt;-->
-        <!--      </ion-avatar>-->
-        <ion-label>{{ resource[dataField] }}</ion-label>
-        <ion-icon slot="end" name="ellipsis-vertical" color="medium"></ion-icon>
-      </ion-item>
+<!--      <ion-item *ngFor="let resource of dataSource.items">-->
+<!--        &lt;!&ndash;      <ion-avatar slot="start">&ndash;&gt;-->
+<!--        &lt;!&ndash;&lt;!&ndash;        <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;      </ion-avatar>&ndash;&gt;-->
+<!--        <ion-label>{{ resource[dataField] }}</ion-label>-->
+<!--        <ion-icon slot="end" name="ellipsis-vertical" color="medium"></ion-icon>-->
+<!--      </ion-item>-->
   <!--  }-->
 
 </ion-list>
