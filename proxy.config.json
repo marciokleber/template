@@ -1,6 +1,6 @@
 {
   "/server-api/**": {
-    "target": "http://localhost:8080",
+    "target": "https://dev.tre-pa.jus.br",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {

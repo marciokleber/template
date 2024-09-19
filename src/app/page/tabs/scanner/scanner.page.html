@@ -12,26 +12,38 @@
       <!--      </ion-button>-->
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar mode="ios"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-
-    <ion-card mode="ios" class="card-content">
-      <ion-item-sliding>
-        <ion-item-options side="start">
-          <ion-item-option color="success">
-            <ion-icon slot="icon-only" src="assets/icon/bag.svg"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-        <ion-item lines="none" class="item-content">
+  <ion-list [inset]="true">
+    <div class="curriculcum-list">
+      <div class="curriculcum-content-data" >
+        <div class="prefix">
           <ion-label class="lbl">
-            <p class="title">teste</p>
-            <p class="sub-title"><ion-icon slot="icon-only" src="assets/icon/home.svg"></ion-icon> local</p>
+            <ion-icon slot="icon-only" src="assets/icon/home.svg"></ion-icon>
           </ion-label>
-          <ion-icon slot="end" name="ellipsis-vertical" color="medium" ></ion-icon>
-        </ion-item>
-      </ion-item-sliding>
-    </ion-card>
+          <div class="name-content">
+            <ion-label>teste</ion-label>
+            <ion-label class="total-time"> yeste </ion-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="curriculcum-content-data" >
+        <div class="prefix">
+          <ion-label class="lbl">
+            <ion-icon slot="icon-only" src="assets/icon/home.svg"></ion-icon>
+          </ion-label>
+          <div class="name-content">
+            <ion-label>teste</ion-label>
+            <ion-label class="total-time"> yeste </ion-label>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </ion-list>
 </ion-content>

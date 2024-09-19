@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StandardDataSource} from "../../../@core/standard-data-source";
 
 @Component({
   selector: 'app-scanner',

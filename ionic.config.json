@@ -3,5 +3,13 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "context": "/app-ponto",
+      "target": "https://dev.tre-pa.jus.br",
+      "changeOrigin": true,
+      "secure": false
+    }
+  ]
 }

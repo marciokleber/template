@@ -9,7 +9,7 @@ import {Local} from "../page/tabs/local/local";
 })
 export class LocalsService extends StandardNgService<Local, number>{
 
-  // URL_API: string = `http://localhost:8080/app-ponto/api/locals`;
+  // URL_API: string = `https://dev.tre-pa.jus.br/app-ponto/api/locals`;
   protected API_PATH: string = `${environment.contextPath}/api/locals`;
 
   // protected constructor(protected http: HttpClient, private storageService: StorageService) {

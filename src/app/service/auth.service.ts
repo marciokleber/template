@@ -7,9 +7,8 @@ import {LoadingService} from "./loading.service";
   providedIn: 'root',
 })
 export class AuthService {
-  private keycloakUrl = 'http://localhost:8085/auth/realms/APP-PONTO/protocol/openid-connect/token';
+  private keycloakUrl = 'https://dev.tre-pa.jus.br/auth/realms/APP-PONTO/protocol/openid-connect/token';
   private clientId = 'app-ponto-frontend';
-  private isGetAccessToken!: boolean;
   //private clientSecret = '2ZD3tmsrYi0p9LQx8fnXpGQBGCRys0JU'; // opcional, se for confidencial
 
   constructor(private http: HttpClient, private storageService: StorageService, private loadService: LoadingService) {}
