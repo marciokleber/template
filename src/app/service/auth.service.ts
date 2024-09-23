@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {StorageService} from "./storage.service";
 import {LoadingService} from "./loading.service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private keycloakUrl = 'https://dev.tre-pa.jus.br/auth/realms/APP-PONTO/protocol/openid-connect/token';
+  private keycloakUrl = `${environment.keycloakPath}/realms/APP-PONTO/protocol/openid-connect/token`;
   private clientId = 'app-ponto-frontend';
   //private clientSecret = '2ZD3tmsrYi0p9LQx8fnXpGQBGCRys0JU'; // opcional, se for confidencial
 
@@ -32,6 +33,7 @@ export class AuthService {
       // Fazendo a requisição para obter o token
       const response: any = await this.http.post(this.keycloakUrl, body.toString(), { headers }).toPromise();
 
+      console.log('Resposta do login:', response);
       const accessToken = response.access_token;
 
       // Armazenando o token no storage do Capacitor

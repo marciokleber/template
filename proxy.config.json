@@ -6,5 +6,13 @@
     "pathRewrite": {
       "^/server-api" : ""
     }
+  },
+  "/keycloak-api/**": {
+    "target": "https://dev.tre-pa.jus.br",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/keycloak-api" : ""
+    }
   }
 }
