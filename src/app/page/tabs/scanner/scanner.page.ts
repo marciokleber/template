@@ -8,6 +8,8 @@ import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption} from 
 })
 export class ScannerPage implements OnInit {
 
+  protected barcodes: string[] = ['teste'];
+
   constructor() { }
 
   ngOnInit() {
@@ -18,6 +20,7 @@ export class ScannerPage implements OnInit {
       hint: CapacitorBarcodeScannerTypeHintALLOption.ALL
     })
     console.log(value.ScanResult);
+    this.barcodes.push(value.ScanResult);
   }
 
 }
