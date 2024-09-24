@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" *ngIf="buttonLeft">
+      <ion-button class="btn" *ngIf="buttonLeft.text" (click)="buttonLeft.action()">
+        <ion-icon *ngIf="buttonLeft.iconName" [name]="buttonLeft.iconName"></ion-icon>
+        {{buttonLeft.text}}
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{ title }}</ion-title>
+    <ion-buttons slot="end" *ngIf="buttonRight">
+      <ion-button class="btn" *ngIf="buttonRight.text" (click)="buttonRight.action()">
+        <ion-icon *ngIf="buttonRight.iconName" [name]="buttonRight.iconName"></ion-icon>
+        {{buttonRight.text}}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
