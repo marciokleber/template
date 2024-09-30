@@ -1,17 +1,30 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar mode="ios">
-    <ion-buttons slot="start">
-    </ion-buttons>
-    <ion-title>Locais</ion-title>
-    <ion-buttons slot="end">
-    </ion-buttons>
-  </ion-toolbar>
-  <ion-toolbar>
-    <std-searchbar [dataSource]="dataSource"></std-searchbar>
-  </ion-toolbar>
-</ion-header>
+<!--<ion-header class="ion-no-border">-->
+<!--  <ion-toolbar mode="ios">-->
+<!--    <ion-buttons slot="start">-->
+<!--    </ion-buttons>-->
+<!--    <ion-title>Locais({{dataSource.items.length || 0}})</ion-title>-->
+<!--    <ion-buttons slot="end">-->
+<!--    </ion-buttons>-->
+<!--  </ion-toolbar>-->
+<!--  <ion-toolbar>-->
+<!--    <std-searchbar [dataSource]="dataSource"></std-searchbar>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+
+<std-header
+  [title]="{text: 'Locais', count: dataSource.items.length }"
+  [dataSource]="dataSource"
+></std-header>
+<ion-content [fullscreen]="true">
 
 <ion-content>
   <std-list [dataSource]="dataSource"
             dataField="nome"></std-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="novoLocal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
 </ion-content>

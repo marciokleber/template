@@ -1,0 +1,30 @@
+<std-header
+  [title]="{text: 'Novo Local'}"
+  [buttonLeft]="{ iconName: 'arrow-back-outline', action: navigateToList}"
+></std-header>
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form class="edit-profile-screen" [formGroup]="form" (ngSubmit)="OnSubmit()">
+
+    <ion-label class="lbl">Código</ion-label>
+    <ion-item lines="none" class="item-content">
+      <ion-input type="text" placeholder="Insira o código" formControlName="idLocal"></ion-input>
+    </ion-item>
+
+    <ion-label class="lbl">Nome</ion-label>
+    <ion-item lines="none" class="item-content">
+      <ion-input type="text" placeholder="Insira o nome" formControlName="nome"></ion-input>
+    </ion-item>
+
+
+    <ion-button class="btn" type="submit" expand="block" fill="solid" color="primary">
+      Save Changes
+    </ion-button>
+  </form>
+
+</ion-content>
+
+
+
+
