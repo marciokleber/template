@@ -1,0 +1,16 @@
+<std-header
+  [title]="{text: 'Tipos de Movimento', count: dataSource.items.length }"
+  [dataSource]="dataSource"
+></std-header>
+
+<ion-content>
+  <std-list [dataSource]="dataSource"
+            dataField="nome"></std-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="novoTipoMovimentacao()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
