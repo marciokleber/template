@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastController} from "@ionic/angular";
-import {LocalsService} from "../../../../service/locals.service";
+import {LocalsService} from "../../../service/locals.service";
 
 @Component({
   selector: 'app-local-form',
@@ -20,8 +20,8 @@ export class LocalForm {
   }
 
 
-  navigateToList = (): void => {
-    this.router.navigate(["tabs/local"])
+  navigateTo = async (): Promise<void> => {
+    await this.router.navigate(["/local"])
   }
 
   async OnSubmit() {
@@ -47,7 +47,7 @@ export class LocalForm {
       });
       await toast.present();
       this.form.reset();
-      this.navigateToList();
+      await this.navigateTo();
     });
 
   }

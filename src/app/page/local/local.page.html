@@ -1,0 +1,19 @@
+<std-header
+  [title]="{text: 'Locais', count: dataSource.items.length }"
+  [dataSource]="dataSource"
+  [buttonLeft]="{ iconName: 'arrow-back-outline', action: navigateTo}">
+</std-header>
+
+
+<ion-content >
+  <std-list [dataSource]="dataSource"
+            [itemList]="{title: 'nome', subTitle:'idLocal', icon: 'business-outline'}">
+  </std-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="novoLocal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
