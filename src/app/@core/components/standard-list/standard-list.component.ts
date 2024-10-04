@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentInit, Component, ContentChild, Input, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {StandardDataSource} from "../../standard-data-source";
 import {LoadOptions} from "../../data-table/load-options";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {map, Observable} from "rxjs";
 import {take} from "rxjs/operators";
 import {httpParamsAdapter} from "../../data-table/http-params-adapter";
+import {StandardSearchbarComponent} from "../standard-searchbar/standard-searchbar.component";
 
 @Component({
   standalone: true,
@@ -15,15 +16,20 @@ import {httpParamsAdapter} from "../../data-table/http-params-adapter";
   imports: [
     IonicModule,
     NgForOf,
-    AsyncPipe
+    AsyncPipe,
+    StandardSearchbarComponent,
+    NgIf
   ]
 })
-export class StandardListComponent implements OnInit {
+export class StandardListComponent implements OnInit, AfterContentInit {
 
   @Input({required: true}) dataSource!: StandardDataSource;
 
   @Input() dataField: string = '';
 
+  @Input ({required: true}) itemList!: { title: string, subTitle?: string, icon?: string };
+
+  @ContentChild("tagContent") tagContent!: ContentChild;
 
 
   // loadOptions: LoadOptions = new LoadOptions();
@@ -35,11 +41,15 @@ export class StandardListComponent implements OnInit {
   // currentPage = 1;
 
   constructor() {
-
+    console.log(this.tagContent);
+  }
+  ngAfterContentInit(){
+    console.log(this.tagContent);
   }
 
   ngOnInit(): void {
     this.dataSource.load();
+    console.log(this.tagContent);
   }
 
 
