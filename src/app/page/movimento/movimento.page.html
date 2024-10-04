@@ -1,11 +1,13 @@
 <std-header
   [title]="{text: 'Tipos de Movimento', count: dataSource.items.length }"
   [dataSource]="dataSource"
+  [buttonLeft]="{ iconName: 'arrow-back-outline', action: navigateTo}"
 ></std-header>
 
 <ion-content>
   <std-list [dataSource]="dataSource"
-            dataField="nome"></std-list>
+            [itemList]="{title: 'nome', icon: 'swap-horizontal-outline'}">
+  </std-list>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="novoTipoMovimentacao()">

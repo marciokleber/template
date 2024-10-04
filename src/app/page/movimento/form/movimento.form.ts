@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastController} from "@ionic/angular";
-import {MovimentoService} from "../../../../service/movimento.service";
+import {MovimentoService} from "../../../service/movimento.service";
 
 @Component({
   selector: 'app-local-form',
@@ -20,8 +20,8 @@ export class MovimentoForm {
   }
 
 
-  navigateToList = (): void => {
-    this.router.navigate(["tabs/movimentacao"]).then();
+  navigateTo = async (): Promise<void> => {
+    await this.router.navigate(["/movimento"])
   }
 
   async OnSubmit() {
@@ -47,7 +47,7 @@ export class MovimentoForm {
       });
       await toast.present();
       this.form.reset();
-      this.navigateToList();
+      await this.navigateTo();
     });
 
   }
