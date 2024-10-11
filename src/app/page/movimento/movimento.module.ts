@@ -7,6 +7,10 @@ import {MovimentoRoutingModule} from './movimento-routing.module';
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
 import {StandardListComponent} from "../../@core/components/standard-list/standard-list.component";
 import {MovimentoForm} from "./form/movimento.form";
+import {
+  SelecionaTipoMovimentoModalComponent
+} from "./components/seleciona-tipo-movimento-modal/seleciona-tipo-movimento-modal.component";
+import {StandardSearchbarComponent} from "../../@core/components/standard-searchbar/standard-searchbar.component";
 
 @NgModule({
   imports: [
@@ -16,9 +20,13 @@ import {MovimentoForm} from "./form/movimento.form";
     MovimentoRoutingModule,
     StandardHeaderComponent,
     StandardListComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StandardSearchbarComponent
   ],
-  declarations: [MovimentoPage, MovimentoForm]
+  exports: [
+    SelecionaTipoMovimentoModalComponent
+  ],
+  declarations: [MovimentoPage, MovimentoForm, SelecionaTipoMovimentoModalComponent]
 })
 export class MovimentoModule {
 }

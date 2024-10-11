@@ -9,6 +9,23 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./page/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'local',
+    loadChildren: () => import('./page/local/local.module').then(m => m.LocalPageModule)
+  },
+  {
+    // Tipo de movimento
+    path: 'movimento',
+    loadChildren: () => import('./page/movimento/movimento.module').then(m => m.MovimentoModule)
+  },
+  {
+    path: 'item',
+    loadChildren: () => import('./page/item-page/item-page.module').then(m => m.ItemPageModule)
+  },
+  {
+    path: 'mover-local',
+    loadChildren: () => import('./tabs/mover-local-tab/mover-local-tab.module').then(m => m.MoverLocalTabModule)
   }
 ];
 

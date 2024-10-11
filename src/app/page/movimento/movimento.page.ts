@@ -20,7 +20,7 @@ export class MovimentoPage {
     this.dataSource = new StandardDataSource({
       load: loadOptions => this.movimentoService.findAll(httpParamsAdapter(loadOptions))
     });
-    console.log(this.dataSource.totalPages)
+    console.log(this.dataSource)
   }
 
   async novoTipoMovimentacao() {
