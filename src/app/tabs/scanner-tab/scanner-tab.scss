@@ -1,0 +1,41 @@
+.main-title {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .lbl {
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-dark);
+    text-align: start;
+  }
+
+  .btn {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'bold';
+    color: var(--ion-color-warning);
+    text-align: end;
+  }
+}
+
+.selected-local {
+  font-size: 12px;
+  font-family: 'bold';
+  color: var(--ion-color-primary);
+  text-align: start;
+  padding: 10px 20px;
+}
+
+.title {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+  text-align: start;
+  white-space: normal;
+  overflow: visible;
+}
