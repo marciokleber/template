@@ -1,0 +1,21 @@
+<std-header
+  [title]="{text: 'Itens', count: dataSource.items.length }"
+  [dataSource]="dataSource"
+  [buttonLeft]="{ iconName: 'arrow-back-outline', action: navigateTo}">
+</std-header>
+
+<ion-content >
+<!--  <std-list [dataSource]="dataSource"-->
+<!--            dataField="epc"></std-list>-->
+
+  <std-list [dataSource]="dataSource"
+            [itemList]="{title: 'epc', icon: 'cube-outline'}">
+  </std-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="novoItem()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
