@@ -9,19 +9,15 @@ const routes: Routes = [
     children: [
       {
         path: 'scanner',
-        loadChildren: () => import('../page/tabs/scanner/scanner.module').then(m => m.ScannerPageModule)
+        loadChildren: () => import('../tabs/scanner-tab/scanner-tab.module').then(m => m.ScannerTabModule)
       },
       {
-        path: 'local',
-        loadChildren: () => import('../page/tabs/local/local.module').then(m => m.LocalPageModule)
+        path: 'preferencia',
+        loadChildren: () => import('../tabs/preferencia-tab/preferencia-tab.module').then(m => m.PreferenciaTabModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../page/tabs/tab2/tab2.module').then(m => m.Tab2PageModule)
-      },
-      {
-        path: 'tab3',
-        loadChildren: () => import('../page/tabs/tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'mover-local',
+        loadChildren: () => import('../tabs/mover-local-tab/mover-local-tab.module').then(m => m.MoverLocalTabModule)
       },
       {
         path: '',

@@ -2,7 +2,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
 
   <div class="settings-section">
-    <ion-label class="main-title">Sistema</ion-label>
+    <ion-label class="main-title">Configuração</ion-label>
     <app-router-card [card]="{
         title: 'Locais',
         subtitle: 'Edição dos locais de movimentação',
@@ -23,6 +23,23 @@
         icon: 'cube-outline',
         route: '/item'}">
     </app-router-card>
+  </div>
 
+
+  <div class="settings-section">
+    <ion-label class="main-title">Relatórios</ion-label>
+    <app-router-card [card]="{
+        title: 'Locais',
+        subtitle: 'Edição dos locais de movimentação',
+        icon: 'business-outline',
+        route: '/local'}">
+    </app-router-card>
+
+    <app-router-card [card]="{
+        title: 'Tipos de Movimentação',
+        subtitle: 'Edição dos tipos de movimentação',
+        icon: 'swap-horizontal-outline',
+        route: '/movimento'}">
+    </app-router-card>
   </div>
 </ion-content>

@@ -8,6 +8,7 @@ import {StandardListComponent} from "../../@core/components/standard-list/standa
 import {StandardSearchbarComponent} from "../../@core/components/standard-searchbar/standard-searchbar.component";
 import {LocalForm} from "./form/local.form";
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
+import {SelecionaLocalModalComponent} from "./components/seleciona-local-modal/seleciona-local-modal.component";
 
 @NgModule({
   imports: [
@@ -20,7 +21,10 @@ import {StandardHeaderComponent} from "../../@core/components/standard-header/st
     StandardHeaderComponent,
     ReactiveFormsModule,
   ],
-  declarations: [LocalPage, LocalForm]
+  exports: [
+    SelecionaLocalModalComponent
+  ],
+  declarations: [LocalPage, LocalForm, SelecionaLocalModalComponent]
 })
 export class LocalPageModule {
 }
