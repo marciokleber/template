@@ -1,0 +1,17 @@
+ion-button{
+  font-size: 14px;
+  color: #1e2023;
+  --color: var(--ion-color-medium);
+}
+:host {
+  display: block;
+  height: 90vh; /* Viewport height (100% da altura da tela) */
+}
+
+.selected {
+  font-size: 12px;
+  font-family: 'bold';
+  color: var(--ion-color-primary);
+  text-align: start;
+  padding: 10px 20px;
+}

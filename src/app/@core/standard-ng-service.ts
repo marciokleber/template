@@ -6,7 +6,7 @@ import { inject } from '@angular/core';
 
 export abstract class StandardNgService<T, ID> {
 
-  private http = inject(HttpClient);
+  public http = inject(HttpClient);
 
   protected abstract API_PATH: string;
 

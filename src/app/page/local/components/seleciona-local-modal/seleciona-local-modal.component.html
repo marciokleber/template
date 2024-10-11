@@ -1,0 +1,35 @@
+
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-button slot="start" fill="clear" (click)="cancel()">
+      Cancelar
+    </ion-button>
+    <ion-title> Selecionar Local</ion-title>
+    <ion-button slot="end" *ngIf="selectedResource" fill="clear" (click)="confirm()">
+      Continuar
+    </ion-button>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="dataSource">
+    <std-searchbar [dataSource]="dataSource"></std-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list [inset]="true">
+    <ion-radio-group [(ngModel)]="selectedResource">
+      <ion-item button="true" *ngFor="let resource of dataSource.items;" lines="none" class="item-content">
+        <ion-radio [value]="resource" mode="ios" color="dark">
+          <ion-label class="lbl">
+            <p class="title">{{ resource.nome }}</p>
+            <p class="title">{{ resource.idLocal }}</p>
+          </ion-label>
+        </ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingText="Carregando..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+
