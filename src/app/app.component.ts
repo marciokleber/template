@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import { Platform } from '@ionic/angular';
+import {Platform} from '@ionic/angular';
 import {StorageService} from "./service/storage.service";
-
-
 
 @Component({
   selector: 'app-root',
@@ -25,8 +23,8 @@ export class AppComponent {
       const token = await this.storageService.find('access_token');
       // console.log('token != null :' + token.value != null)
       // console.log('Token: ' + token.value)
-      if (token.value != null) this.router.navigate(["tabs"]);
-      else this.router.navigate(["login"]);
+      if (token.value != null) this.router.navigate(["tabs/scanner"]);
+      else this.router.navigate(["tabs/mover-local"]);
     })
   }
 }

@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
       const isToken = await this.authService.login(username, password).then()
       console.log('Token:', isToken);
       if (isToken) {
-        await this.router.navigate(['tabs']);
+        await this.router.navigate(['/tabs/scanner']);
       }
     } else {
       console.log('Formulário inválido');
