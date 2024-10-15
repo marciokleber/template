@@ -7,7 +7,8 @@ import {StandardSearchbarComponent} from "../../@core/components/standard-search
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
 import {ItemPage} from "./item.page";
 import {ItemPageRoutingModule} from "./item-page-routing.module";
-import {ItemForm} from "./form/item.form";
+import {ItemFormComponents} from "./components/form/item-form.components";
+import {ItemListComponents} from "./components/list/item-list.components";
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import {ItemForm} from "./form/item.form";
     ReactiveFormsModule,
     ItemPageRoutingModule
   ],
-  declarations: [ItemPage,ItemForm]
+  declarations: [ItemPage,ItemFormComponents, ItemListComponents]
 })
 export class ItemPageModule {
 }

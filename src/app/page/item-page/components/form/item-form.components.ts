@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {ToastController} from "@ionic/angular";
-import {ItemService} from "../../../service/item.service";
+import {ItemService} from "../../../../service/item.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-item-form',
-  templateUrl: 'item.form.html',
-  styleUrls: ['item.form.scss']
+  templateUrl: 'item-form.components.html',
+  styleUrls: ['item-form.components.scss']
 })
-export class ItemForm {
+export class ItemFormComponents {
 
   form: FormGroup;
   constructor(private router: Router, private toastController: ToastController, private itemService: ItemService) {

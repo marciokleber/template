@@ -1,0 +1,36 @@
+<std-header
+  [title]="{text: 'Itens', count: dataSource.items.length }"
+  [dataSource]="dataSource"
+  [buttonLeft]="{ iconName: 'arrow-back-outline', action: navigateTo}">
+</std-header>
+
+<ion-content >
+
+  <ion-list [inset]="true">
+    <div class="curriculcum-list">
+      <div class="curriculcum-content-data" *ngFor="let resource of dataSource.items">
+        <div class="prefix">
+          <ion-label class="lbl">
+            <ion-icon slot="icon-only" name="cube-outline"></ion-icon>
+          </ion-label>
+          <div class="name-content">
+            <ion-label>{{ resource.epc }}</ion-label>
+            <ion-label class="subtitle"> {{ resource.nomeLocal }}</ion-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingText="Carregando..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="novoItem()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+

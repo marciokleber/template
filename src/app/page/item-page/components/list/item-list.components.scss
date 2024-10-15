@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  height: 100vh; /* Viewport height (100% da altura da tela) */
+}
+ion-content {
+  --background: #fff;
+  height: 80vh;
+}
+
+
+.subtitle {
+  font-size: 12px;
+  font-family: 'bold';
+  color: var(--ion-color-primary);
+  text-align: start;
+}
+
