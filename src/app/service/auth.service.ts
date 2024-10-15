@@ -26,8 +26,8 @@ export class AuthService {
     body.set('password', password);
     //body.set('client_secret',this.clientSecret )
 
-    const load = await this.loadService.showLoading('Carregando...')
-     await load.present();
+    const load = await this.loadService.showLoading('Carregando...');
+    await load.present();
 
     try {
       // Fazendo a requisição para obter o token

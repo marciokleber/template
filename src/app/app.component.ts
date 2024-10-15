@@ -24,7 +24,7 @@ export class AppComponent {
       // console.log('token != null :' + token.value != null)
       // console.log('Token: ' + token.value)
       if (token.value != null) this.router.navigate(["tabs/scanner"]);
-      else this.router.navigate(["tabs/mover-local"]);
+      else this.router.navigate(["tabs/preferencia"]);
     })
   }
 }
