@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-item-page',
-  template: `<router-outlet></router-outlet>`,
+  template: `<div><router-outlet></router-outlet></div>`,
   styleUrls: ['./item.page.scss'],
 })
 export class ItemPage {

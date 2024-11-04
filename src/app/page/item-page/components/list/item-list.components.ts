@@ -47,6 +47,7 @@ export class ItemListComponents implements OnInit {
     }
     // this.loadOptions.currentPage = ++this.currentPage;
     this.dataSource.setPage(++this.dataSource.currentPage);
+    console.log(++this.dataSource.currentPage)
     this.dataSource.load();
   }
 

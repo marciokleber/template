@@ -9,11 +9,14 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: 'item-form.components.html',
   styleUrls: ['item-form.components.scss']
 })
+
 export class ItemFormComponents {
 
   form: FormGroup;
   constructor(private router: Router, private toastController: ToastController, private itemService: ItemService) {
-    this.form = new FormGroup({});
+    this.form = new FormGroup({
+
+    });
   }
 
   navigateTo = async (): Promise<void> => {

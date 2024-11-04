@@ -1,10 +1,6 @@
-:host {
-  display: block;
-  height: 100vh; /* Viewport height (100% da altura da tela) */
-}
 ion-content {
-  --background: #fff;
-  height: 80vh;
+  display: block;
+  height: 85vh; /* Viewport height (100% da altura da tela) */
 }
 
 
@@ -14,4 +10,5 @@ ion-content {
   color: var(--ion-color-primary);
   text-align: start;
 }
+
 

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption } from "@capacitor/barcode-scanner";
-import { ModalController } from "@ionic/angular";
-import { LocalsService } from "../../service/locals.service";
-import { Router } from "@angular/router";
-import { StandardDataSource } from "../../@core/standard-data-source";
-import { httpParamsAdapter } from "../../@core/data-table/http-params-adapter";
-
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from "@ionic/angular";
+import {LocalsService} from "../../service/locals.service";
+import {Router} from "@angular/router";
+import {StandardDataSource} from "../../@core/standard-data-source";
+import {httpParamsAdapter} from "../../@core/data-table/http-params-adapter";
+import {Barcode, BarcodeFormat, BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
+import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption} from "@capacitor/barcode-scanner";
 
 
 @Component({
