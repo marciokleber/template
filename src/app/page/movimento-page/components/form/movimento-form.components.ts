@@ -2,14 +2,14 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastController} from "@ionic/angular";
-import {MovimentoService} from "../../../service/movimento.service";
+import {MovimentoService} from "../../../../service/movimento.service";
 
 @Component({
-  selector: 'app-local-form',
-  templateUrl: 'movimento.form.html',
-  styleUrls: ['movimento.form.scss']
+  selector: 'app-movimento-form',
+  templateUrl: 'movimento-form.components.html',
+  styleUrls: ['movimento-form.components.scss']
 })
-export class MovimentoForm {
+export class MovimentoFormComponents {
 
   form: FormGroup;
 

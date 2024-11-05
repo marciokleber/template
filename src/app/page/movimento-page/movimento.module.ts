@@ -6,11 +6,12 @@ import {MovimentoPage} from './movimento.page';
 import {MovimentoRoutingModule} from './movimento-routing.module';
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
 import {StandardListComponent} from "../../@core/components/standard-list/standard-list.component";
-import {MovimentoForm} from "./form/movimento.form";
+import {MovimentoFormComponents} from "./components/form/movimento-form.components";
 import {
   SelecionaTipoMovimentoModalComponent
-} from "./components/seleciona-tipo-movimento-modal/seleciona-tipo-movimento-modal.component";
+} from "./components/others/seleciona-tipo-movimento-modal/seleciona-tipo-movimento-modal.component";
 import {StandardSearchbarComponent} from "../../@core/components/standard-searchbar/standard-searchbar.component";
+import {MovimentoListComponents} from "./components/list/movimento-list.components";
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import {StandardSearchbarComponent} from "../../@core/components/standard-search
   exports: [
     SelecionaTipoMovimentoModalComponent
   ],
-  declarations: [MovimentoPage, MovimentoForm, SelecionaTipoMovimentoModalComponent]
+  declarations: [MovimentoPage, MovimentoListComponents, MovimentoFormComponents, SelecionaTipoMovimentoModalComponent]
 })
 export class MovimentoModule {
 }

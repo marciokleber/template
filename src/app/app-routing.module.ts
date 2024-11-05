@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     // Tipo de movimento
     path: 'movimento',
-    loadChildren: () => import('./page/movimento/movimento.module').then(m => m.MovimentoModule)
+    loadChildren: () => import('./page/movimento-page/movimento.module').then(m => m.MovimentoModule)
   },
   {
     path: 'item',

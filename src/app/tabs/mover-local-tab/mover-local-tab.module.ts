@@ -12,7 +12,7 @@ import {StandardSearchbarComponent} from "../../@core/components/standard-search
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
 import {IonButtons, IonMenuButton} from "@ionic/angular/standalone";
 import {LocalPageModule} from "../../page/local/local.module";
-import {MovimentoModule} from "../../page/movimento/movimento.module";
+import {MovimentoModule} from "../../page/movimento-page/movimento.module";
 
 @NgModule({
   imports: [
