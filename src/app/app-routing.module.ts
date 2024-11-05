@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'local',
-    loadChildren: () => import('./page/local/local.module').then(m => m.LocalPageModule)
+    loadChildren: () => import('./page/local-page/local.module').then(m => m.LocalPageModule)
   },
   {
     // Tipo de movimento

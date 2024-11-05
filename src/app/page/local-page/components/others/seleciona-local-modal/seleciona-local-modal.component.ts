@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ModalController} from "@ionic/angular";
-import {LocalsService} from "../../../../service/locals.service";
+import {LocalsService} from "../../../../../service/locals.service";
 import {Router} from "@angular/router";
-import {StandardDataSource} from "../../../../@core/standard-data-source";
-import {httpParamsAdapter} from "../../../../@core/data-table/http-params-adapter";
+import {StandardDataSource} from "../../../../../@core/standard-data-source";
+import {httpParamsAdapter} from "../../../../../@core/data-table/http-params-adapter";
 
 
 @Component({

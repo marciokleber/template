@@ -7,18 +7,12 @@ import {MovimentoListComponents} from "./components/list/movimento-list.componen
 const routes: Routes = [
   {
     path: '',
-    component: MovimentoPage,
-    children: [
-      {
-        path: '',
-        component: MovimentoListComponents
-      },
-      {
-        path: 'form',
-        component: MovimentoFormComponents
-      }
-    ]
+    component: MovimentoListComponents
   },
+  {
+    path: 'form',
+    component: MovimentoFormComponents
+  }
 ];
 
 @NgModule({

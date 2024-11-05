@@ -1,16 +1,17 @@
 import {Component} from '@angular/core';
-import {StandardDataSource} from "../../@core/standard-data-source";
-import {LocalsService} from "../../service/locals.service";
-import {httpParamsAdapter} from "../../@core/data-table/http-params-adapter";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ToastController} from "@ionic/angular";
+import {LocalsService} from "../../../../service/locals.service";
+import {StandardDataSource} from "../../../../@core/standard-data-source";
+import {httpParamsAdapter} from "../../../../@core/data-table/http-params-adapter";
 
 @Component({
-  selector: 'app-local',
-  templateUrl: 'local.page.html',
-  styleUrls: ['local.page.scss']
+  selector: 'app-local-list',
+  templateUrl: 'local-list.component.html',
+  styleUrls: ['local-list.component.scss']
 })
-export class LocalPage {
-
+export class LocalListComponent {
   dataSource!: StandardDataSource;
 
   constructor(
@@ -30,4 +31,5 @@ export class LocalPage {
   navigateTo = (): void => {
     this.router.navigate(["/tabs/preferencia"])
   }
+
 }

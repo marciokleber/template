@@ -7,7 +7,7 @@ import {MovimentoService} from "../../service/movimento.service";
 @Component({
   selector: 'app-movimento',
   template: `<div><router-outlet></router-outlet></div>`,
-  styleUrls: ['movimento.page.scss']
+  styles: `div {height: 100vh;}`
 })
 export class MovimentoPage {
 

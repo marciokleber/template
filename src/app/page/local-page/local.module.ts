@@ -6,9 +6,10 @@ import {LocalPage} from './local.page';
 import {LocalPageRoutingModule} from "./local-routing.module";
 import {StandardListComponent} from "../../@core/components/standard-list/standard-list.component";
 import {StandardSearchbarComponent} from "../../@core/components/standard-searchbar/standard-searchbar.component";
-import {LocalForm} from "./form/local.form";
+import {LocalFormComponent} from "./components/form/local-form.component";
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
-import {SelecionaLocalModalComponent} from "./components/seleciona-local-modal/seleciona-local-modal.component";
+import {SelecionaLocalModalComponent} from "./components/others/seleciona-local-modal/seleciona-local-modal.component";
+import {LocalListComponent} from "./components/list/local-list.component";
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {SelecionaLocalModalComponent} from "./components/seleciona-local-modal/s
   exports: [
     SelecionaLocalModalComponent
   ],
-  declarations: [LocalPage, LocalForm, SelecionaLocalModalComponent]
+  declarations: [LocalPage, LocalListComponent, LocalFormComponent, SelecionaLocalModalComponent]
 })
 export class LocalPageModule {
 }

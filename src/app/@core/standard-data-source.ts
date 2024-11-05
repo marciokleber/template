@@ -18,7 +18,7 @@ export class StandardDataSource {
 
   items: any[] = []
 
-  constructor(private options: StandardDataSourceOptions) {
+  constructor(public options: StandardDataSourceOptions) {
   }
 
   load() {

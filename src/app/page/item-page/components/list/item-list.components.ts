@@ -34,7 +34,7 @@ export class ItemListComponents implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.load = await this.loadService.showLoadingTiming('Carregando...',2500);
+    this.load = await this.loadService.showLoadingTiming('Carregando...',3000);
     await this.load.present();
     this.dataSource.load();
     console.log(this.dataSource);

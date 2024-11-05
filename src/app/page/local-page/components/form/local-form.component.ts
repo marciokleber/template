@@ -2,14 +2,14 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastController} from "@ionic/angular";
-import {LocalsService} from "../../../service/locals.service";
+import {LocalsService} from "../../../../service/locals.service";
 
 @Component({
   selector: 'app-local-form',
-  templateUrl: 'local.form.html',
-  styleUrls: ['local.form.scss']
+  templateUrl: 'local-form.component.html',
+  styleUrls: ['local-form.component.scss']
 })
-export class LocalForm {
+export class LocalFormComponent {
 
   form: FormGroup;
   constructor(private router: Router, private toastController: ToastController, private localsService: LocalsService) {

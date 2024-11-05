@@ -11,7 +11,7 @@ import {StandardListComponent} from "../../@core/components/standard-list/standa
 import {StandardSearchbarComponent} from "../../@core/components/standard-searchbar/standard-searchbar.component";
 import {StandardHeaderComponent} from "../../@core/components/standard-header/standard-header.component";
 import {IonButtons, IonMenuButton} from "@ionic/angular/standalone";
-import {LocalPageModule} from "../../page/local/local.module";
+import {LocalPageModule} from "../../page/local-page/local.module";
 import {MovimentoModule} from "../../page/movimento-page/movimento.module";
 
 @NgModule({
