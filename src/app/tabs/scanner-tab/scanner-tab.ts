@@ -6,6 +6,7 @@ import {StandardDataSource} from "../../@core/standard-data-source";
 import {httpParamsAdapter} from "../../@core/data-table/http-params-adapter";
 import {Barcode, BarcodeFormat, BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
 import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption} from "@capacitor/barcode-scanner";
+import {ItemService} from "../../service/item.service";
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ScannerTab implements OnInit {
 
   constructor(
     private localsService: LocalsService,
+    private itemService: ItemService,
     private router: Router,
     private modalCtrl: ModalController
   ) {
@@ -48,12 +50,27 @@ export class ScannerTab implements OnInit {
     }
   }
 
+  async tagExist(epc: string){
+    console.log('###################')
+    const value = await this.itemService.exist(epc);
+    console.log(value)
+    console.log('###################')
+    console.log("existe na base de dados" + value)
+    console.log(value)
+    return value != null;
+  }
+
   async scan() {
     const value = await CapacitorBarcodeScanner.scanBarcode({
       hint: CapacitorBarcodeScannerTypeHintALLOption.ALL
     });
+    console.log(value.ScanResult)
 
-    console.log(value.ScanResult);
-    this.barcodes.push(value.ScanResult);
+    await this.itemService.exist(value.ScanResult).subscribe(response => {
+      console.log(`${value.ScanResult} - valor encontrado na base!`);
+      this.barcodes.push(value.ScanResult);
+    }, error => {
+      console.log('não Existe');
+    })
   }
 }

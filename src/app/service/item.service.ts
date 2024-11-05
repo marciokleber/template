@@ -21,6 +21,10 @@ export class ItemService extends StandardNgService<Item, number> {
     return this.http.get<number>(`${this.API_PATH}/quantidade-tags-por-local/${localId}`);
   }
 
+  public exist(tag: string): Observable<any> {
+    return this.http.get<any>(`${this.API_PATH}/tag/${tag}`);
+  }
+
   public findAllListView(params: HttpParams = new HttpParams()): Observable<Page<ItemList>> {
     // const params = new HttpParamsAdapter(loadOptions).httpParams();
     return this.http.get<Page<ItemList>>(`${environment.contextPath}/api/tags-list-view`, { params }).pipe(
