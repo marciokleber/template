@@ -1,11 +1,25 @@
-<std-header [title]="{text: 'Scanner'}"></std-header>
-<ion-content [fullscreen]="true">
-  <div class="main-title">
+<std-header [title]="{text: 'Scanner'}">
+  <div class="main-title" #content>
     <ion-label class="lbl">Local:</ion-label>
-    <ion-label id="open-modal" class="btn">Selecionar <ion-icon name="chevron-forward-outline" color="warning" ></ion-icon></ion-label>
+    <ion-label slot="end" id="open-modal" class="btn">Selecionar <ion-icon name="chevron-forward-outline" color="warning" ></ion-icon></ion-label>
   </div>
+  <ion-label  *ngIf="selectedResource != null" class="selected-local"> {{ selectedResource.nome }} </ion-label>
+  <div class="btns">
+    <ion-button class="btn" expand="block" fill="solid" color="dark" (click)="scan()">
+      <ion-icon name="scan-outline"></ion-icon>
+      scanner
+    </ion-button>
+    <ion-button class="btn" expand="block" fill="solid" color="primary" (click)="scan()">
+      <ion-icon name="send-outline"></ion-icon>
+      Movimentar
+    </ion-button>
+  </div>
+  <div class="main-title">
+    <ion-label >Items: {{barcodes.length}}</ion-label>
+  </div>
+</std-header>
 
-  <ion-label *ngIf="selectedResource != null" class="selected-local"> {{ selectedResource.nome }} </ion-label>
+<ion-content [fullscreen]="true">
 
 
   <ion-modal trigger="open-modal" (willDismiss)="onModalDismiss($event)">
@@ -14,8 +28,8 @@
     </ng-template>
   </ion-modal>
 
-  <ion-list [inset]="true" *ngIf="barcodes.length != 0">
-    <div class="curriculcum-list" *ngFor="let barcode of barcodes">
+  <ion-list class="limited-list" [inset]="true" *ngIf="barcodes.length != 0">
+    <div class="curriculcum-list" *ngFor="let barcode of barcodes; let i = index">
       <div class="curriculcum-content-data" >
         <div class="prefix">
           <ion-label class="lbl">
@@ -25,11 +39,13 @@
             <ion-label> {{ barcode }}</ion-label>
           </div>
         </div>
+        <ion-button fill="clear" slot="end" color="medium" (click)="removeBarcode(i)">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+
       </div>
     </div>
   </ion-list>
 
-  <ion-button expand="block" fill="solid" color="primary" (click)="scan()">
-    scanner
-  </ion-button>
+
 </ion-content>

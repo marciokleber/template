@@ -12,6 +12,8 @@
           <span class="selected">{{ this.selectedLocalOrigem.nome }}</span>
           <br>
           <span class="selected">{{ this.selectedLocalOrigem.idLocal }}</span>
+          <br>
+          <span class="selected">Itens: {{ this.quantidadeTagsLocalOrigem }}</span>
         </div>
       </ion-label>
       <ion-icon slot="end" name="create-outline" color="dark"></ion-icon>
@@ -35,6 +37,8 @@
           <span class="selected">{{ this.selectedLocalDestino.nome }}</span>
           <br>
           <span class="selected">{{ this.selectedLocalDestino.idLocal }}</span>
+          <br>
+          <span class="selected">Itens: {{ this.quantidadeTagsLocalDestino }}</span>
         </div>
       </ion-label>
       <ion-icon slot="end" name="create-outline" color="dark"></ion-icon>
@@ -70,14 +74,22 @@
   </ion-modal>
 
 
-  <ion-button
+  <ion-button id="present-alert"
     *ngIf="selectedLocalOrigem && selectedLocalDestino && selectedTipoMovimentacao"
     class="btn" type="submit"
     expand="block" fill="solid"
-    color="primary"
-    (click)="movimentar()">
+    color="primary" (click)="setOpen(true)">
     <ion-icon name="navigate-outline"></ion-icon>
     Movimentar
   </ion-button>
+
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    header="Movimentação Total"
+    subHeader="Deseja continuar?"
+    [message]="message"
+    [buttons]="alertButtons"
+    (didDismiss)="setOpen(false)"
+  ></ion-alert>
 
 </ion-content>

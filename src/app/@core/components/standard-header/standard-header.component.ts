@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {AfterContentInit, Component, ContentChild, ElementRef, Input} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {StandardSearchbarComponent} from "../standard-searchbar/standard-searchbar.component";
@@ -17,13 +17,18 @@ import {StandardDataSource} from "../../standard-data-source";
     StandardSearchbarComponent
   ]
 })
-export class StandardHeaderComponent {
+export class StandardHeaderComponent implements AfterContentInit {
 
   @Input({required: true}) title!: { text: string, count?: number };
   @Input() dataSource!: StandardDataSource;
   @Input() buttonLeft?: { text?: string, iconName?: string; action: () => void };
   @Input() buttonRight?: { text?: string, iconName?: string; action: () => void };
 
-  constructor() {
+  @ContentChild('content', { static: false }) content!: ElementRef;
+  hasContent = false;
+
+  constructor() {}
+  ngAfterContentInit() {
+    this.hasContent = !!this.content;
   }
 }

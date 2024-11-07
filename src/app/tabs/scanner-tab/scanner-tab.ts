@@ -4,7 +4,6 @@ import {LocalsService} from "../../service/locals.service";
 import {Router} from "@angular/router";
 import {StandardDataSource} from "../../@core/standard-data-source";
 import {httpParamsAdapter} from "../../@core/data-table/http-params-adapter";
-import {Barcode, BarcodeFormat, BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
 import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption} from "@capacitor/barcode-scanner";
 import {ItemService} from "../../service/item.service";
 
@@ -16,7 +15,7 @@ import {ItemService} from "../../service/item.service";
 })
 export class ScannerTab implements OnInit {
 
-  protected barcodes: string[] = [];
+  protected barcodes: string[] = ["123", "1231", "123", "1231", "123", "1231", "123", "1231", "123"];
   message!: string;
   dataSource!: StandardDataSource;
 
@@ -39,7 +38,7 @@ export class ScannerTab implements OnInit {
 
   // Método chamado quando o modal é fechado
   onModalDismiss(event: CustomEvent<any>) {
-    const { data, role } = event.detail;
+    const {data, role} = event.detail;
 
     if (role === 'confirm') {
       console.log('Selected resource:', data);
@@ -50,7 +49,7 @@ export class ScannerTab implements OnInit {
     }
   }
 
-  async tagExist(epc: string){
+  async tagExist(epc: string) {
     console.log('###################')
     const value = await this.itemService.exist(epc);
     console.log(value)
@@ -72,5 +71,9 @@ export class ScannerTab implements OnInit {
     }, error => {
       console.log('não Existe');
     })
+  }
+
+  removeBarcode(index: number) {
+    this.barcodes.splice(index, 1);
   }
 }

@@ -39,4 +39,9 @@ export class ItemService extends StandardNgService<Item, number> {
     );
   }
 
+  public moverItemLocal(data: { localOrigemId: number; localDestinoId: number; tipoMovimentacaoId: number }): Observable<any> {
+    return this.http.post(`${this.API_PATH}/mover-local`, data);
+  }
+
+
 }

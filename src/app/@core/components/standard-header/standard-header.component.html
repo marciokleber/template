@@ -17,4 +17,7 @@
   <ion-toolbar *ngIf="dataSource">
     <std-searchbar [dataSource]="dataSource"></std-searchbar>
   </ion-toolbar>
+  <ion-toolbar *ngIf="hasContent">
+    <ng-content></ng-content>
+  </ion-toolbar>
 </ion-header>

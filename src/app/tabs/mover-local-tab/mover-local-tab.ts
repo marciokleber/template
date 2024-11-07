@@ -1,8 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ItemService} from "../../service/item.service";
+import {ToastController} from "@ionic/angular";
+import {LoadingService} from "../../service/loading.service";
 
-export interface Local {id: number, idLocal: string, nome: string}
-export interface TipoMovimento {id: number, data: Date, nome: string}
+export interface Local {
+  id: number,
+  idLocal: string,
+  nome: string
+}
+
+export interface TipoMovimento {
+  id: number,
+  data: Date,
+  nome: string
+}
 
 
 @Component({
@@ -10,49 +21,91 @@ export interface TipoMovimento {id: number, data: Date, nome: string}
   templateUrl: './mover-local-tab.html',
   styleUrls: ['./mover-local-tab.scss'],
 })
-export class MoverLocalTab {
+export class MoverLocalTab implements OnInit{
 
-  public selectedLocalOrigem!: Local;
-  public quantidadeTagsLocalOrigem!: number;
+  public loading!: HTMLIonLoadingElement;
 
-  public selectedLocalDestino!: Local;
-  public quantidadeTagsLocalDestino!: number;
+  public selectedLocalOrigem!: Local  |null;
+  public quantidadeTagsLocalOrigem!: number |null;
 
-  public selectedTipoMovimentacao!: TipoMovimento;
+  public selectedLocalDestino!: Local  |null ;
+  public quantidadeTagsLocalDestino!: number |null;
 
-  constructor(private itemService: ItemService) {
+  public selectedTipoMovimentacao!: TipoMovimento |null;
+  public message!: string;
+
+  public data: { localOrigemId: number, localDestinoId: number, tipoMovimentacaoId: number } = {
+    localOrigemId: 0,
+    localDestinoId: 0,
+    tipoMovimentacaoId: 0
+  } ;
+
+  constructor(private itemService: ItemService, private toastController: ToastController, private loadingService: LoadingService) {
   }
 
-  verificaLocaisSelecionadosDirentes(): void {
-    if (this.selectedLocalOrigem && this.selectedLocalDestino) {
-      if (this.selectedLocalOrigem.id === this.selectedLocalDestino.id) {
-        console.log('Locais iguais');
-      }
-    }
+  async ngOnInit() {
+    this.loading = await this.loadingService.showLoading('Carregando...');
   }
 
 
-  getQuantidadeTagsPorLocal(): void {
-    this.itemService.getQuantidedeTagsPorLocal(this.selectedLocalOrigem.id)
-      .subscribe(
-        (quantidade) => {console.log(quantidade)},
-        (error) => console.error('Error loading tags', error)
-      );
-  }
-
-  onModalDismiss(event: CustomEvent<any>, local: string) {
-    const { data, role } = event.detail;
+  async onModalDismiss(event: CustomEvent<any>, local: string) {
+    const {data, role} = event.detail;
     if (role === 'confirm') {
       if (local === 'origem') {
-        this.selectedLocalOrigem = data;
-        this.getQuantidadeTagsPorLocal()
-        this.verificaLocaisSelecionadosDirentes()
-      }
-      else if(local === 'destino'){
-        this.selectedLocalDestino = data;
-        this.verificaLocaisSelecionadosDirentes()
-      }
-      else {
+        if (this.selectedLocalDestino) {
+          if (data.id === this.selectedLocalDestino.id) {
+            const toast = await this.toastController.create({
+              message: 'O local de Origem não pode ser igual ao de destino',
+              duration: 1500,
+              position: 'bottom',
+              color: 'danger'
+            });
+            await toast.present();
+            this.selectedLocalOrigem = null
+            this.quantidadeTagsLocalOrigem = null
+
+          }else{
+            this.selectedLocalOrigem = data;
+          }
+        }else {
+          this.selectedLocalOrigem = data;
+        }
+
+        // @ts-ignore
+        this.itemService.getQuantidedeTagsPorLocal(this.selectedLocalOrigem.id)
+          .subscribe(
+            (quantidade) => {
+              this.quantidadeTagsLocalOrigem = quantidade
+            })
+
+      } else if (local === 'destino') {
+
+        if (this.selectedLocalOrigem) {
+          if (data.id === this.selectedLocalOrigem.id) {
+            const toast = await this.toastController.create({
+              message: 'O local de destino não pode ser igual ao de origem',
+              duration: 1500,
+              position: 'bottom',
+              color: 'danger'
+            });
+            await toast.present();
+            this.selectedLocalDestino = null
+            this.quantidadeTagsLocalDestino = null
+
+          }else{
+            this.selectedLocalDestino = data;
+          }
+        }else{
+          this.selectedLocalDestino = data;
+        }
+
+        // @ts-ignore
+        this.itemService.getQuantidedeTagsPorLocal(this.selectedLocalDestino.id)
+          .subscribe(
+            (quantidade) => {
+              this.quantidadeTagsLocalDestino = quantidade
+            })
+      } else {
         this.selectedTipoMovimentacao = data;
       }
     } else if (role === 'cancel') {
@@ -61,7 +114,44 @@ export class MoverLocalTab {
   }
 
 
-  async movimentar() {
-    console.log('Movimentar: ', this.selectedLocalOrigem.id, this.selectedLocalDestino.id, this.selectedTipoMovimentacao.id);
+  public alertButtons = [
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'Movimentar',
+      role: 'confirm',
+      handler: async () => {
+        await this.loading.present()
+        console.log('Alert confirmed');
+
+        if (this.selectedLocalOrigem && this.selectedTipoMovimentacao && this.selectedLocalDestino){
+          this.data.localOrigemId = this.selectedLocalOrigem.id;
+          this.data.localDestinoId = this.selectedLocalDestino.id;
+          this.data.tipoMovimentacaoId = this.selectedTipoMovimentacao.id;
+          this.itemService.moverItemLocal(this.data).subscribe(async value => {
+
+            console.log('rodou')
+            this.selectedLocalOrigem = null;
+            this.selectedLocalDestino = null;
+            this.selectedTipoMovimentacao = null;
+            await this.loading.dismiss();
+          })
+
+        }
+      },
+    },
+  ];
+
+  isAlertOpen = false;
+
+  setOpen(isOpen: boolean) {
+    // @ts-ignore
+    this.message = `Estão sendo Movimentados ${this.quantidadeTagsLocalOrigem} Itens do local ${this.selectedLocalOrigem.nome} para o destino ${this.selectedLocalDestino.nome} `
+    this.isAlertOpen = isOpen;
   }
 }
