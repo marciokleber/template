@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ToastController} from "@ionic/angular";
 import {LocalsService} from "../../../../service/locals.service";
 import {StandardDataSource} from "../../../../@core/standard-data-source";
 import {httpParamsAdapter} from "../../../../@core/data-table/http-params-adapter";

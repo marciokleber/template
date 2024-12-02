@@ -1,9 +1,10 @@
-import {AfterContentInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ItemService} from "../../../../service/item.service";
 import {StandardDataSource} from "../../../../@core/standard-data-source";
 import {httpParamsAdapter} from "../../../../@core/data-table/http-params-adapter";
 import {LoadingService} from "../../../../service/loading.service";
+import {finalize, Observable} from "rxjs";
 
 @Component({
   selector: 'app-item-list',
@@ -21,8 +22,31 @@ export class ItemListComponents implements OnInit {
     private loadService: LoadingService
   ) {
     this.dataSource = new StandardDataSource({
-      load: loadOptions => this.itemService.findAllListView(httpParamsAdapter(loadOptions))
+      load: loadOptions => {
+        // Retorna um Observable diretamente
+        const loading$ = this.loadService.showLoading('Carregando dados...')
+          .then(loading => {
+            loading.present();
+            return this.itemService.findAllListView(httpParamsAdapter(loadOptions))
+              .pipe(
+                finalize(() => loading.dismiss()) // Fecha o loading quando o Observable finaliza
+              );
+          });
+
+        // Precisamos encapsular em um Observable
+        return new Observable(subscriber => {
+          loading$.then(observable => {
+            observable.subscribe(
+              result => subscriber.next(result),
+              error => subscriber.error(error),
+              () => subscriber.complete()
+            );
+          });
+        });
+      }
     });
+
+
   }
 
   async novoItem() {
@@ -34,10 +58,7 @@ export class ItemListComponents implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.load = await this.loadService.showLoadingTiming('Carregando...',3000);
-    await this.load.present();
     this.dataSource.load();
-    console.log(this.dataSource);
   }
 
   onIonInfinite(e: any) {
@@ -50,8 +71,6 @@ export class ItemListComponents implements OnInit {
     console.log(++this.dataSource.currentPage)
     this.dataSource.load();
   }
-
-
 
 }
 
