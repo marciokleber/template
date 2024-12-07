@@ -43,5 +43,9 @@ export class ItemService extends StandardNgService<Item, number> {
     return this.http.post(`${this.API_PATH}/mover-local`, data);
   }
 
+  public scannerMove(data: {resources: string[],localDestinoId: number, tipoMovimentoId:number }): Observable<any> {
+    return this.http.post(`${this.API_PATH}/scanner-move`, data);
+  }
+
 
 }

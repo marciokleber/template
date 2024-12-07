@@ -125,25 +125,43 @@ export class MoverLocalTab implements OnInit{
     {
       text: 'Movimentar',
       role: 'confirm',
-      handler: async () => {
-        await this.loading.present()
-        console.log('Alert confirmed');
+      handler: () => {
+        this.loadingService.showLoading('Carregando...')
+          .then(async loading => {
+            await loading.present();
 
-        if (this.selectedLocalOrigem && this.selectedTipoMovimentacao && this.selectedLocalDestino){
-          this.data.localOrigemId = this.selectedLocalOrigem.id;
-          this.data.localDestinoId = this.selectedLocalDestino.id;
-          this.data.tipoMovimentacaoId = this.selectedTipoMovimentacao.id;
-          this.itemService.moverItemLocal(this.data).subscribe(async value => {
+            if (this.selectedLocalOrigem && this.selectedTipoMovimentacao && this.selectedLocalDestino) {
+              this.data.localOrigemId = this.selectedLocalOrigem.id;
+              this.data.localDestinoId = this.selectedLocalDestino.id;
+              this.data.tipoMovimentacaoId = this.selectedTipoMovimentacao.id;
 
-            console.log('rodou')
-            this.selectedLocalOrigem = null;
-            this.selectedLocalDestino = null;
-            this.selectedTipoMovimentacao = null;
-            await this.loading.dismiss();
+              this.itemService.moverItemLocal(this.data).subscribe({
+                next: async () => {
+                  console.log('Movimentação realizada com sucesso');
+                  // Reseta os valores selecionados
+                  this.selectedLocalOrigem = null;
+                  this.selectedLocalDestino = null;
+                  this.selectedTipoMovimentacao = null;
+                },
+                error: (e) => {
+                  console.error('Erro ao mover o item:', e);
+                },
+                complete: async () => {
+                  // Encerra o loading quando a movimentação é concluída
+                  await loading.dismiss();
+                }
+              });
+            } else {
+              // Valores obrigatórios não preenchidos
+              console.warn('Campos obrigatórios não preenchidos.');
+              await loading.dismiss(); // Encerra o loading
+            }
           })
-
-        }
+          .catch(error => {
+            console.error('Erro ao exibir o loading:', error);
+          });
       },
+
     },
   ];
 

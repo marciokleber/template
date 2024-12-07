@@ -6,6 +6,7 @@ import {StandardDataSource} from "../../@core/standard-data-source";
 import {httpParamsAdapter} from "../../@core/data-table/http-params-adapter";
 import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption} from "@capacitor/barcode-scanner";
 import {ItemService} from "../../service/item.service";
+import {LoadingService} from "../../service/loading.service";
 
 
 @Component({
@@ -15,16 +16,18 @@ import {ItemService} from "../../service/item.service";
 })
 export class ScannerTab implements OnInit {
 
-  protected barcodes: string[] = [];
+  protected barcodes: string[] = ["4551042527"];
   message!: string;
   dataSource!: StandardDataSource;
 
-  selectedLocalResource!: { id: number, idLocal: string, nome: string };
+  selectedLocalResourceLocal: { id: number, idLocal: string, nome: string } | null = null;
+  selectedLocalResourceMovimento: { id: number, data: Date, nome: string } | null = null;
 
   constructor(
     private localsService: LocalsService,
     private itemService: ItemService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingService: LoadingService
   ) {
     this.dataSource = new StandardDataSource({
       load: loadOptions => this.localsService.findAll(httpParamsAdapter(loadOptions))
@@ -36,12 +39,24 @@ export class ScannerTab implements OnInit {
   }
 
   // Método chamado quando o modal é fechado
-  onModalDismiss(event: CustomEvent<any>) {
+  onModalDismissLocal(event: CustomEvent<any>) {
     const {data, role} = event.detail;
 
     if (role === 'confirm') {
       console.log('Selected resource:', data);
-      this.selectedLocalResource = data;
+      this.selectedLocalResourceLocal = data;
+      // Faça o tratamento necessário com o recurso confirmado
+    } else if (role === 'cancel') {
+      console.log('Modal foi cancelado');
+    }
+  }
+
+  onModalDismissMovimento(event: CustomEvent<any>) {
+    const {data, role} = event.detail;
+
+    if (role === 'confirm') {
+      console.log('Selected resource:', data);
+      this.selectedLocalResourceMovimento = data;
       // Faça o tratamento necessário com o recurso confirmado
     } else if (role === 'cancel') {
       console.log('Modal foi cancelado');
@@ -89,9 +104,7 @@ export class ScannerTab implements OnInit {
   }
 
   async movimentar() {
-    if (this.selectedLocalResource){
-
-    }else {
+    if (!this.selectedLocalResourceLocal) {
       const toast = await this.toastController.create({
         message: 'Local não selecionado',
         duration: 1500,
@@ -99,6 +112,87 @@ export class ScannerTab implements OnInit {
         color: 'danger'
       });
       await toast.present();
+      return;
     }
+
+    if (!this.selectedLocalResourceMovimento) {
+      const toast = await this.toastController.create({
+        message: 'Tipo movimento não selecionado',
+        duration: 1500,
+        position: 'bottom',
+        color: 'danger'
+      });
+      await toast.present();
+      return;
+    }
+
+    if (this.barcodes.length === 0) {
+      const toast = await this.toastController.create({
+        message: 'Não há itens para movimentar',
+        duration: 1500,
+        position: 'bottom',
+        color: 'danger'
+      });
+      await toast.present();
+      return;
+    }
+
+
+    console.log("Iniciando movimentação...");
+    const data: {resources: string[],localDestinoId: number, tipoMovimentoId:number } = {
+        resources: this.barcodes,
+        localDestinoId: this.selectedLocalResourceLocal.id,
+        tipoMovimentoId: this.selectedLocalResourceMovimento.id
+    };
+
+
+    this.loadingService.showLoading('Carregando...')
+      .then(async loading =>{
+        await loading.present();
+        this.itemService.scannerMove(data).subscribe({
+          next: async () => {
+            this.selectedLocalResourceMovimento = null
+            this.selectedLocalResourceLocal = null
+            this.barcodes = [];
+            const toast = await this.toastController.create({
+              message: 'Movimentação realizada com sucesso',
+              duration: 1500,
+              position: 'bottom',
+              color: 'success'
+            });
+            await toast.present();
+            console.log('Movimentação realizada com sucesso');
+          },
+          error: async (e) => {
+            await loading.dismiss();
+
+            const toast = await this.toastController.create({
+              message: 'Erro durante a movimentação',
+              duration: 1500,
+              position: 'bottom',
+              color: 'danger'
+            });
+            await toast.present();
+            console.error('Erro durante movimentação', e);
+            throw e;
+          },
+          complete: async () => {
+            await loading.dismiss();
+          }
+        });
+      }).catch(e => {
+        console.error('Erro ao exibir o loading:', e);
+        throw e;
+    })
+
+
+
+    // const data: {resources: string[],localDestinoId: number, tipoMovimentoId:number } = {
+    //   resources: this.barcodes,
+    //   localDestinoId: this.selectedLocalResourceLocal.id,
+    //   tipoMovimentoId: this.selectedLocalResourceMovimento.id
+    // };
+    // this.itemService.scannerMove(data).subscribe()
   }
+
 }

@@ -1,15 +1,24 @@
 <std-header [title]="{text: 'Scanner'}">
-  <div class="main-title" #content>
-    <ion-label class="lbl">Local:</ion-label>
-    <ion-label slot="end" id="open-modal" class="btn">Selecionar <ion-icon name="chevron-forward-outline" color="warning" ></ion-icon></ion-label>
+  <div #content>
+    <div class="main-title">
+      <ion-label class="lbl">Local:</ion-label>
+      <ion-label slot="end" id="open-modal-local" class="btn">Selecionar <ion-icon name="chevron-forward-outline" color="warning" ></ion-icon></ion-label>
+    </div>
+    <ion-label  *ngIf="selectedLocalResourceLocal != null" class="selected-local"> {{ selectedLocalResourceLocal.nome }} </ion-label>
+
+    <div class="main-title">
+      <ion-label class="lbl">Tipo movimento:</ion-label>
+      <ion-label slot="end" id="open-modal-tipo-movimento" class="btn">Selecionar <ion-icon name="chevron-forward-outline" color="warning" ></ion-icon></ion-label>
+    </div>
+    <ion-label  *ngIf="selectedLocalResourceMovimento != null" class="selected-local"> {{ selectedLocalResourceMovimento.nome }} </ion-label>
+
   </div>
-  <ion-label  *ngIf="selectedLocalResource != null" class="selected-local"> {{ selectedLocalResource.nome }} </ion-label>
   <div class="btns">
     <ion-button class="btn" expand="block" fill="solid" color="dark" (click)="scan()">
       <ion-icon name="scan-outline"></ion-icon>
       scanner
     </ion-button>
-    <ion-button class="btn" expand="block" fill="solid" color="primary" (click)="movimentar()">
+    <ion-button class="btn" expand="block" fill="solid" color="primary" (click)="movimentar()" [disabled]="!selectedLocalResourceLocal || !selectedLocalResourceMovimento">
       <ion-icon name="send-outline"></ion-icon>
       Movimentar
     </ion-button>
@@ -22,9 +31,15 @@
 <ion-content [fullscreen]="true">
 
 
-  <ion-modal trigger="open-modal" (willDismiss)="onModalDismiss($event)">
+  <ion-modal trigger="open-modal-local" (willDismiss)="onModalDismissLocal($event)">
     <ng-template>
       <app-seleciona-local-modal></app-seleciona-local-modal>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal trigger="open-modal-tipo-movimento" (willDismiss)="onModalDismissMovimento($event)">
+    <ng-template>
+      <app-tipo-movimento-modal></app-tipo-movimento-modal>
     </ng-template>
   </ion-modal>
 
