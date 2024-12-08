@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalController, ToastController} from "@ionic/angular";
+import {AlertController, ToastController} from "@ionic/angular";
 import {LocalsService} from "../../service/locals.service";
-import {Router} from "@angular/router";
 import {StandardDataSource} from "../../@core/standard-data-source";
 import {httpParamsAdapter} from "../../@core/data-table/http-params-adapter";
 import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHintALLOption} from "@capacitor/barcode-scanner";
 import {ItemService} from "../../service/item.service";
 import {LoadingService} from "../../service/loading.service";
+import {Barcode, BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
 
 
 @Component({
@@ -16,7 +16,10 @@ import {LoadingService} from "../../service/loading.service";
 })
 export class ScannerTab implements OnInit {
 
-  protected barcodes: string[] = ["4551042527"];
+  protected barcodes: string[] = [];
+  isSupported = false;
+
+  Ionicbarcodes: Barcode[] = [];
   message!: string;
   dataSource!: StandardDataSource;
 
@@ -27,7 +30,8 @@ export class ScannerTab implements OnInit {
     private localsService: LocalsService,
     private itemService: ItemService,
     private toastController: ToastController,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private alertController: AlertController
   ) {
     this.dataSource = new StandardDataSource({
       load: loadOptions => this.localsService.findAll(httpParamsAdapter(loadOptions))
@@ -36,6 +40,9 @@ export class ScannerTab implements OnInit {
 
   ngOnInit() {
     this.dataSource.load();
+    BarcodeScanner.isSupported().then((result) => {
+      this.isSupported = result.supported;
+    });
   }
 
   // Método chamado quando o modal é fechado
@@ -73,11 +80,29 @@ export class ScannerTab implements OnInit {
     return value != null;
   }
 
-  async scan() {
-    const value = await CapacitorBarcodeScanner.scanBarcode({
-      hint: CapacitorBarcodeScannerTypeHintALLOption.ALL
+  async requestPermissions(): Promise<boolean> {
+    const { camera } = await BarcodeScanner.requestPermissions();
+    return camera === 'granted' || camera === 'limited';
+  }
+
+  async presentAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Permission denied',
+      message: 'Please grant camera permission to use the barcode scanner.',
+      buttons: ['OK'],
     });
-    console.log(value.ScanResult)
+    await alert.present();
+  }
+
+  async scan() {
+    const granted = await this.requestPermissions();
+    if (!granted) {
+      this.presentAlert();
+      return;
+    }
+    const barcodes = await BarcodeScanner.scan();
+    console.log(barcodes.barcodes[0].displayValue)
+
     const toast = await this.toastController.create({
       message: 'item já escaneado.',
       duration: 1500,
@@ -85,11 +110,10 @@ export class ScannerTab implements OnInit {
       color: 'danger'
     });
 
-
-    this.itemService.exist(value.ScanResult).subscribe(async response => {
-      if (!this.barcodes.includes(value.ScanResult)) {
-        console.log(`${value.ScanResult} - valor encontrado na base!`);
-        this.barcodes.push(value.ScanResult);
+    this.itemService.exist(barcodes.barcodes[0].displayValue).subscribe(async response => {
+      if (!this.barcodes.includes(barcodes.barcodes[0].displayValue)) {
+        console.log(`${barcodes.barcodes[0].displayValue} - valor encontrado na base!`);
+        this.barcodes.push(barcodes.barcodes[0].displayValue);
       } else {
         await toast.present();
       }
@@ -139,15 +163,15 @@ export class ScannerTab implements OnInit {
 
 
     console.log("Iniciando movimentação...");
-    const data: {resources: string[],localDestinoId: number, tipoMovimentoId:number } = {
-        resources: this.barcodes,
-        localDestinoId: this.selectedLocalResourceLocal.id,
-        tipoMovimentoId: this.selectedLocalResourceMovimento.id
+    const data: { resources: string[], localDestinoId: number, tipoMovimentoId: number } = {
+      resources: this.barcodes,
+      localDestinoId: this.selectedLocalResourceLocal.id,
+      tipoMovimentoId: this.selectedLocalResourceMovimento.id
     };
 
 
     this.loadingService.showLoading('Carregando...')
-      .then(async loading =>{
+      .then(async loading => {
         await loading.present();
         this.itemService.scannerMove(data).subscribe({
           next: async () => {
@@ -181,10 +205,9 @@ export class ScannerTab implements OnInit {
           }
         });
       }).catch(e => {
-        console.error('Erro ao exibir o loading:', e);
-        throw e;
+      console.error('Erro ao exibir o loading:', e);
+      throw e;
     })
-
 
 
     // const data: {resources: string[],localDestinoId: number, tipoMovimentoId:number } = {

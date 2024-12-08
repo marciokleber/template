@@ -25,6 +25,14 @@ export abstract class StandardNgService<T, ID> {
     );
   }
 
+
+
+
+  public getLocals(q: string, page: number, size: number): Observable<Page<T>> {
+    const params = new HttpParams().set('q', q).set('page', page).set('size', size);
+    return this.http.get<Page<T>>(this.API_PATH, { params })
+  }
+
   public findById(id: ID): Observable<T> {
     return this.http.get<T>(`${this.API_PATH}/${id}`);
   }

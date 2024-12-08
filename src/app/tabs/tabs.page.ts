@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {IonRouterOutlet} from "@ionic/angular";
+import {MoverLocalTab} from "./mover-local-tab/mover-local-tab";
 
 @Component({
   selector: 'app-tabs',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
 export class TabsPage {
 
   constructor() {}
+
+  onTabDidChange(event: any) {
+    console.log('Tab changed to:', event.tab);
+  }
 
 }

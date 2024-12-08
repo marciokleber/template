@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ItemService} from "../../service/item.service";
 import {ToastController} from "@ionic/angular";
 import {LoadingService} from "../../service/loading.service";
+import {Router} from "@angular/router";
 
 export interface Local {
   id: number,
@@ -25,13 +26,13 @@ export class MoverLocalTab implements OnInit{
 
   public loading!: HTMLIonLoadingElement;
 
-  public selectedLocalOrigem!: Local  |null;
-  public quantidadeTagsLocalOrigem!: number |null;
+  public selectedLocalOrigem: Local | null = null;
+  public quantidadeTagsLocalOrigem: number | null = null;
 
-  public selectedLocalDestino!: Local  |null ;
-  public quantidadeTagsLocalDestino!: number |null;
+  public selectedLocalDestino: Local | null = null ;
+  public quantidadeTagsLocalDestino: number | null = null;
 
-  public selectedTipoMovimentacao!: TipoMovimento |null;
+  public selectedTipoMovimentacao: TipoMovimento | null = null;
   public message!: string;
 
   public data: { localOrigemId: number, localDestinoId: number, tipoMovimentacaoId: number } = {
@@ -40,7 +41,15 @@ export class MoverLocalTab implements OnInit{
     tipoMovimentacaoId: 0
   } ;
 
-  constructor(private itemService: ItemService, private toastController: ToastController, private loadingService: LoadingService) {
+  constructor(private itemService: ItemService,
+              private toastController: ToastController,
+              private loadingService: LoadingService,
+              private router: Router) {
+  }
+
+  ionViewDidEnter() {
+    console.log('Página atual:', this.router.url)
+    this.clear();
   }
 
   async ngOnInit() {
@@ -171,5 +180,13 @@ export class MoverLocalTab implements OnInit{
     // @ts-ignore
     this.message = `Estão sendo Movimentados ${this.quantidadeTagsLocalOrigem} Itens do local ${this.selectedLocalOrigem.nome} para o destino ${this.selectedLocalDestino.nome} `
     this.isAlertOpen = isOpen;
+  }
+
+  clear(){
+    this.selectedLocalOrigem = null;
+    this.quantidadeTagsLocalOrigem= null;
+    this.selectedLocalDestino = null ;
+    this.quantidadeTagsLocalDestino = null;
+    this.selectedTipoMovimentacao = null;
   }
 }
